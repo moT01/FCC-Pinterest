@@ -1,0 +1,77 @@
+.navbarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #e6e6e6;
+  box-shadow: 1px 0 4px 4px #999;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbarButtonContainer {
+  display: inline-block;
+  margin: 0;
+}
+
+.navbarBrand {
+  font-variant: small-caps;
+  padding-left: 20px; 
+}
+
+.navbarBrand:hover {
+  text-decoration:none; 
+}
+  
+.singleButtonContainer {
+  display: inline-block;
+}
+
+.navbarButton, .navbarBrand {
+  padding: 20px;
+  display: inline-block;
+}
+
+.navbarButton:hover, .navbarBrand:hover {
+  text-decoration: none;
+  background-color: #ccc;
+}
+
+.navbarButton:focus, .navbarBrand:focus {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+	.navbarContainer {
+     font-size: 13px;	
+	}
+
+	.navbarBrand {
+     padding-left: 3px;	
+	}
+	
+	.navbarButton {
+	  padding: 3px;
+	  transform: rotate(-45deg);
+	}
+	
+   .navbarButton:hover, .navbarBrand:hover {
+	  background-color: #e6e6e6;
+	}
+}
+
+@media screen and (max-width: 350px) {
+	.navbarContainer {
+      justify-content: center;
+	}
+
+	.navbarBrand {
+     display: none;
+	}
+}
