@@ -1,0 +1,11 @@
+.flash {
+  min-width: 80%;
+  position: fixed;
+  top: 100px;
+  z-index: 1;
+}
+
+.alert {
+  box-shadow: 0 0 16px 16px #fff;
+  margin-bottom: 20px;
+}

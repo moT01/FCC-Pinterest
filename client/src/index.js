@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './rootReducer';
-//import setAuthorizationToken from './utils/setAuthorizationToken';
-//import { setCurrentUser } from './actions/authActions';
+import setAuthorizationToken from './utils/setAuthorizationToken';
+import { setCurrentUser } from './actions/authActions';
 //import jwtDecode from 'jwt-decode';
 import createRoutes from './routes';
 

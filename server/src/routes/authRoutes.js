@@ -10,16 +10,23 @@ let router = express.Router();
 //this route is temporary - just so i can console.log something
 //will change it to above one when this is working
 router.get('/twitterLogin', function(req, res, next) {
-  console.log( "auth.js '/twitterLogin'");
+  console.log( "'/twitterLogin'");
   return passport.authenticate('twitter')(req, res, next);
 });
 
 //see docs for 'successRedirect'
 router.get('/twitterReturn', passport.authenticate('twitter', {
-  failureRedirect: '/'
+  failureRedirect: 'http://localhost:3000',
+  successRedirect: 'http://localhost:8080/api/auth/profile'
 }), (req, res) => {
-  console.log("auth.js '/twitterReturn'");
-  return res.json({'hello':'world'})
+  console.log("'/twitterReturn'");
+  return res.json({'user':req.user})
+});
+
+router.get('/profile', function(req, res, next) {
+  console.log(req.user);
+
+  res.redirect('localhost:3000/profile');
 });
 
 export default router;
