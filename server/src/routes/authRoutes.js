@@ -12,10 +12,10 @@ router.get('/twitterReturn', passport.authenticate('twitter', {
 }));
 
 router.get('/login', function(req, res, next) {
-  if (req.user.length > 0){
+  if (req.user){
     const token = jwt.sign({
-      id: req.user._id,
-      username: req.user.username
+      id: req.user[0]._id,
+      username: req.user[0].username
        }, process.env.JWT_SECRET);
        res.json({token});
    } else {

@@ -19,12 +19,14 @@ class NavigationBar extends React.Component {
   }
   
   render(){
+  	 console.log(this.props.state);
     const { isAuthenticated } = this.props.auth;
 
     const userLinks = (
       <ul className="navbarButtonContainer">
         YOU ARE LOGGED IN!!
         <li className="singleButtonContainer"><Link to="/" className="navbarButton">Browse</Link></li>
+        <li className="singleButtonContainer"><Link to="/createPost" className="navbarButton">Create</Link></li>
         <li className="singleButtonContainer"><Link to="/posted" className="navbarButton">Posted</Link></li>
         <li className="singleButtonContainer"><Link to="/pinned" className="navbarButton">Pinned</Link></li>
         <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>Logout</Link></li>
@@ -54,6 +56,7 @@ class NavigationBar extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    state: state,
     auth: state.auth
   };
 }

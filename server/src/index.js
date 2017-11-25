@@ -1,10 +1,9 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import authRoutes from './routes/authRoutes';
-import cookieSession from 'cookie-session';
+import postsRoutes from './routes/postsRoutes';
 import session from 'express-session';
 import passport from 'passport';
 
@@ -21,7 +20,6 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
-app.use(cookieParser());
 app.use(session({
 	secret: 'whatever',
 	resave: true, 
@@ -35,5 +33,6 @@ require( './auth/passportTwitter')();
 //app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/posts', postsRoutes);
 
 app.listen(port, () => console.log('Running on port: ' + port));
