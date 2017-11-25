@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './rootReducer';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import { setCurrentUser } from './actions/authActions';
-//import jwtDecode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import createRoutes from './routes';
 
 const routes = createRoutes();
@@ -19,10 +19,10 @@ const store = createStore(
   )
 );
 
-/*if (localStorage.jwtToken) {
+if (localStorage.jwtToken) {
   store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
   setAuthorizationToken(localStorage.jwtToken);
-}*/
+}
 
 
 ReactDOM.render(<Provider store={store}>

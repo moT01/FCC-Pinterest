@@ -4,20 +4,19 @@ import userModel from '../models/userModel';
 import { ObjectID } from 'mongodb';
 
 module.exports = function() {
+
+  //create a cookie to send to the browser
   passport.serializeUser(function(user, done) {
-    console.log('serialize ' + user.id);
 	 done(null, user.id);
   });
 	
+  //decode the cookie on each subsequent request to the server
   passport.deserializeUser(function(obj, done) {
-    console.log('deserialize ' + obj);
-
     userModel.find({ '_id' : ObjectID(obj) }).then(user => {
-    	console.log('deserializered');
       done(null, user);
     });
   });
-	
+
   passport.use(new Strategy({
 	 consumerKey: process.env.TWITTER_KEY,
 	 consumerSecret: process.env.TWITTER_SECRET,

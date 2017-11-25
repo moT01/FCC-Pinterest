@@ -7,7 +7,7 @@ import {
 
 import App from './components/App';
 import MainPage from './components/main/MainPage';
-import ProfilePage from './components/profile/ProfilePage';
+import LoginPage from './components/login/LoginPage';
 import requireAuth from'./utils/requireAuth';
 
 const createRoutes = () => (
@@ -15,7 +15,7 @@ const createRoutes = () => (
       <App>
         <Switch>
           <Route exact path="/" component={MainPage}/>
-          <Route exact path="/profile" component={requireAuth(ProfilePage)}/>
+          <Route exact path="/login" component={LoginPage}/>
         </Switch>
       </App>
     </Router>

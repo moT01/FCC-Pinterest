@@ -23,6 +23,7 @@ class NavigationBar extends React.Component {
 
     const userLinks = (
       <ul className="navbarButtonContainer">
+        YOU ARE LOGGED IN!!
         <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>Logout</Link></li>
       </ul>
     );
