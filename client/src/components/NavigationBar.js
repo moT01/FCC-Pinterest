@@ -24,6 +24,9 @@ class NavigationBar extends React.Component {
     const userLinks = (
       <ul className="navbarButtonContainer">
         YOU ARE LOGGED IN!!
+        <li className="singleButtonContainer"><Link to="/" className="navbarButton">Browse</Link></li>
+        <li className="singleButtonContainer"><Link to="/posted" className="navbarButton">Posted</Link></li>
+        <li className="singleButtonContainer"><Link to="/pinned" className="navbarButton">Pinned</Link></li>
         <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>Logout</Link></li>
       </ul>
     );
@@ -36,7 +39,7 @@ class NavigationBar extends React.Component {
 
     return (
       <nav className="navbarContainer">
-        <div className="singleButtonContainer"><Link to="/" className="navbarBrand">pinterest</Link></div>
+        <div className="singleButtonContainer"><Link to="/" className="navbarBrand">Pinterest</Link></div>
 
         { isAuthenticated ? userLinks : guestLinks }
       </nav>
