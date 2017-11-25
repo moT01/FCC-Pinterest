@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes';
 import postsRoutes from './routes/postsRoutes';
 import session from 'express-session';
 import passport from 'passport';
+import cookieParser from 'cookie-parser';
 
 require('dotenv').config();
 
@@ -20,13 +21,15 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
+app.use(cookieParser());
 app.use(session({
-	secret: 'whatever',
+	secret: process.env.SESSION_SECRET,
+	cookie: { maxAge : 10000 }, //10 seconds
 	resave: true, 
-	saveUninitialized: true }))
+	saveUninitialized: true }));
 
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
 
 require( './auth/passportTwitter')();
 

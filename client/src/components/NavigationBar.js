@@ -2,22 +2,16 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login, logout } from '../actions/authActions';
+import { logout } from '../actions/authActions';
 import './NavigationBar.css';
 
 class NavigationBar extends React.Component {
-  login(e){
-  	 console.log('login click in component');
-    e.preventDefault();
-    this.props.login();
-  }	
-	
   logout(e){
     console.log('logout click in component');
     e.preventDefault();
     this.props.logout();
   }
-  
+ 
   render(){
   	 console.log(this.props.state);
     const { isAuthenticated } = this.props.auth;
@@ -60,4 +54,4 @@ function mapStateToProps(state) {
     auth: state.auth
   };
 }
-export default connect(mapStateToProps, { login, logout })(NavigationBar);
+export default connect(mapStateToProps, { logout })(NavigationBar);

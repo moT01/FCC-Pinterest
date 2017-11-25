@@ -1,11 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { login } from '../../actions/authActions';
 
 class MainPage extends React.Component {
-  render(){
+  componentDidMount() {
+    if(!this.props.isAuthenticated) {
+      this.props.login();
+    }
+  }
+
+  render(){  	
     return (
       <div>Main Page - browse all posts here</div>
     );
   }
 }
 
-export default MainPage;
+function mapStateToProps(state) {
+  return {
+    state: state,
+    auth: state.auth
+  };
+}
+
+export default connect(mapStateToProps, { login })(MainPage);

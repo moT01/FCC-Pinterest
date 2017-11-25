@@ -19,13 +19,15 @@ export function logout() {
 }
 
 export function login(){
+  console.log('login action');
   return dispatch => {
     return axios.get('/api/auth/login').then(res => {
-    	console.log(res.data);
       const token = res.data.token;
-      localStorage.setItem('jwtToken', token);
-      setAuthorizationToken(token);
-      dispatch(setCurrentUser(jwtDecode(token)));
+      if(token) {
+        localStorage.setItem('jwtToken', token);
+        setAuthorizationToken(token);
+        dispatch(setCurrentUser(jwtDecode(token)));
+       }
     });
   }
 }
