@@ -26,12 +26,13 @@ class CreatePostForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     console.log('submit event');
-    this.props.createPost(this.state);//.then(() => {
-     // this.props.addFlashMessage({
-       // type: this.props.messages.messageType,
-       // text: this.props.messages.messageMessage
-     // });
-    //});
+    this.props.createPost(this.state).then(() => {
+    	console.log('pre-add flash');
+      this.props.addFlashMessage({
+        type: this.props.message.messageType,
+        text: this.props.message.messageMessage
+      });
+    });
   }
 
   render() {
@@ -60,7 +61,8 @@ class CreatePostForm extends React.Component {
 function mapStateToProps(state) {
     return {
       id: state.auth.user.id,
-      username: state.auth.user.username
+      username: state.auth.user.username,
+      message: state.postsReducer.message
     }
 }
 
