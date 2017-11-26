@@ -4,12 +4,12 @@ import { login } from '../../actions/authActions';
 
 class MainPage extends React.Component {
   componentDidMount() {
-    if(!this.props.isAuthenticated) {
+    if(!this.props.auth.isAuthenticated) {
       this.props.login();
     }
   }
 
-  render(){  	
+  render(){
     return (
       <div>Main Page - browse all posts here</div>
     );
