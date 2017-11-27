@@ -24,15 +24,15 @@ class CreatePostForm extends React.Component {
   }
 
   onSubmit(e) {
+  	 console.log('submit create post form');
     e.preventDefault();
-    console.log('submit event');
     this.props.createPost(this.state).then(() => {
-    	console.log('pre-add flash');
       this.props.addFlashMessage({
         type: this.props.message.messageType,
         text: this.props.message.messageMessage
       });
     });
+    console.log('end of submit create post form');
   }
 
   render() {

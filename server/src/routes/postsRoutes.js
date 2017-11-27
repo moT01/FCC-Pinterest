@@ -8,11 +8,16 @@ let fetch = require('node-fetch');
 let router = express.Router();
 
 router.get('/allPosts', (req, res) => {
-
+	console.log('/allPosts');
+   postsModel.find().then(allPosts => {
+     res.send(allPosts) 
+   }).catch(err => {
+     res.send([err])
+   });
 });
 
 
-router.get('/usersPosts/:username', (req, res) => {
+router.get('/usersPosts/:userID', (req, res) => {
 
 });
 
@@ -42,14 +47,32 @@ router.post('/createPost', (req, res) => {
 
   if(isImageURL(imageURL)) {       
     createPost();
+  } else {
+    res.send([message]);
   }
-  
-  res.send([message]);
 });
 
 
-router.patch('/deletePost/:id', (req, res) => {
+router.patch('/deletePost', (req, res) => {
+  console.log('/delete');
+  const { postID, postOwner, authenticatedUsername } = req.body;
+  let message = { 'messageType': 'error', 'messageMessage': 'Could not delete post' };
 
+  async function deletePost(){
+    if(postOwner === authenticatedUsername) {
+      postsModel.remove({_id:postID}).then(() => {
+		  postsModel.find().then(allPosts => {
+		  	 message = {'messageType': 'error', 'messageMessage': 'Post deleted'};
+		    res.send([allPosts, message]);
+		  }).catch(err => {
+	       message = {'messageType': 'error', 'messageMessage': 'server error'};
+	       res.send([[err], message]);
+		  });
+	   });
+    }
+  }
+
+  deletePost();
 });
 
 export default router;

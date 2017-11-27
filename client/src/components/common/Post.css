@@ -1,0 +1,75 @@
+.manyBooksContainer {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.singleBookContainer {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 170px;
+  max-width: 170px;
+  margin: 10px 16px;
+  border: 1px solid #ccc;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 1px 1px 2px 1px #666;
+  background-color: #ccc;
+}
+
+.bookImage {
+  text-align: center;
+  min-height: 100px;
+  border-radius: 0 10px 0 0;
+  max-width: 100%;
+}
+
+.bookDetailsContainer {
+  padding: 5px;
+  text-align: center;
+  margin: 0;
+  list-style: none;
+  font-size: 16px;
+  background-color: #ccc;
+}
+
+.bookDetail {}
+
+.bookButtonContainer {
+  border-radius: 0 0 10px 0;
+  background-color: #ccc;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+}
+ 
+.btn {
+  font-variant: small-caps;
+  font-family: Helvetica;
+  font-size: 13px;
+  padding: 0 6px;
+  border: 1px solid #666;
+}
+
+.bookButtonRight {
+  border-radius: 5px 5px 10px 5px;
+}
+
+.bookButtonLeft {
+  border-radius: 5px 5px 5px 0px;
+}
+
+.btn:hover {
+  border: 1px solid #666;
+}

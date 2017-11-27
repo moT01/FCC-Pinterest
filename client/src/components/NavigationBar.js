@@ -18,7 +18,6 @@ class NavigationBar extends React.Component {
 
     const userLinks = (
       <ul className="navbarButtonContainer">
-        YOU ARE LOGGED IN!!
         <li className="singleButtonContainer"><Link to="/" className="navbarButton">Browse</Link></li>
         <li className="singleButtonContainer"><Link to="/createPost" className="navbarButton">Create</Link></li>
         <li className="singleButtonContainer"><Link to="/posted" className="navbarButton">Posted</Link></li>
