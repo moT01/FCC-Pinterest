@@ -16,6 +16,7 @@ export default (state = initialState, action = {}) => {
       }
     case 'ADD_FLASH':
       return {
+        allPosts: [],
         message: action.message
       }
     default: return state;
