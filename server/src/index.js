@@ -24,7 +24,10 @@ app.use(bodyParser.urlencoded({extended:false}));
 //app.use(cookieParser());
 app.use(session({
 	secret: process.env.SESSION_SECRET,
-	cookie: { maxAge : 10000 }, //10 seconds
+	cookie: { 
+     maxAge : 10000,
+	  secure: false
+	},
 	resave: true, 
 	saveUninitialized: true }));
 

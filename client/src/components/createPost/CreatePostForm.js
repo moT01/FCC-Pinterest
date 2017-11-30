@@ -28,8 +28,8 @@ class CreatePostForm extends React.Component {
     e.preventDefault();
     this.props.createPost(this.state).then(() => {
       this.props.addFlashMessage({
-        type: this.props.message.messageType,
-        text: this.props.message.messageMessage
+        type: this.props.message.type,
+        text: this.props.message.content
       });
     });
     console.log('end of submit create post form');

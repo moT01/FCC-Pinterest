@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
+import { getAllPosts, getMyPins, getUserPosts } from '../actions/postsActions';
 import './NavigationBar.css';
 
 class NavigationBar extends React.Component {
@@ -11,17 +12,34 @@ class NavigationBar extends React.Component {
     e.preventDefault();
     this.props.logout();
   }
+  
+  allPosts(e) {
+    console.log('logout click in component');
+    e.preventDefault();
+    this.props.getAllPosts();    
+  }
+  
+  myPins(e) {
+    console.log('myPins clicked in nav component');
+    e.preventDefault();
+    this.props.getMyPins(this.props.username);
+  }
+  
+  myPosts(e) {
+    console.log('myPosts clicked in nav component');
+    e.preventDefault();
+    this.props.getUserPosts(this.props.username);
+  }
  
   render(){
-  	 console.log(this.props.state);
     const { isAuthenticated } = this.props.auth;
 
     const userLinks = (
       <ul className="navbarButtonContainer">
-        <li className="singleButtonContainer"><Link to="/" className="navbarButton">Browse</Link></li>
+        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.allPosts.bind(this)}>Browse</Link></li>
         <li className="singleButtonContainer"><Link to="/createPost" className="navbarButton">Create</Link></li>
-        <li className="singleButtonContainer"><Link to="/posted" className="navbarButton">Posted</Link></li>
-        <li className="singleButtonContainer"><Link to="/pinned" className="navbarButton">Pinned</Link></li>
+        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.myPosts.bind(this)}>myPosts</Link></li>
+        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.myPins.bind(this)}>myPins</Link></li>
         <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>Logout</Link></li>
       </ul>
     );
@@ -50,7 +68,9 @@ class NavigationBar extends React.Component {
 function mapStateToProps(state) {
   return {
     state: state,
-    auth: state.auth
+    auth: state.auth,
+    username: state.auth.user.username
   };
 }
-export default connect(mapStateToProps, { logout })(NavigationBar);
+
+export default connect(mapStateToProps, { logout, getAllPosts, getMyPins, getUserPosts })(NavigationBar);

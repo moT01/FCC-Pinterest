@@ -1,5 +1,5 @@
 import React from 'react';
-import { deletePost, pinPost, unpinPost } from '../../actions/postsActions';
+import { deletePost, pinPost, unpinPost, getUserPosts } from '../../actions/postsActions';
 import { GetPinButton, GetDeleteButton } from './PostConditionals';
 import { addFlashMessage } from '../../actions/flashMessages';
 import { connect } from 'react-redux';
@@ -9,37 +9,44 @@ class Post extends React.Component {
   constructor(props) {
  	 super(props);
     this.deletePost = this.deletePost.bind(this);
+    this.pinPost = this.pinPost.bind(this);
+    this.unpinPost = this.unpinPost.bind(this);
+    this.getUserPosts = this.getUserPosts.bind(this);
   }
 
   deletePost(postID, postOwner) {
   	 console.log('delete clicked in component');
     this.props.deletePost(postID, postOwner, this.props.username).then(res => {
       this.props.addFlashMessage({
-        type: this.props.messages.messageType,
-        text: this.props.messages.messageMessage
+        type: this.props.messages.type,
+        text: this.props.messages.content
       });
     });
-    console.log('end delete click in component');
   }
 
   pinPost() {
   	 console.log('pin clicked in component');
-    /*this.props.pinPost(this.props.post._id).then(res => {
+    this.props.pinPost(this.props.post._id, this.props.username).then(res => {
       this.props.addFlashMessage({
-        type: this.props.messages.messageType,
-        text: this.props.messages.messageMessage
+        type: this.props.messages.type,
+        text: this.props.messages.content
       });
-    });*/
+    });
   }
 
   unpinPost() {
     console.log('unpin clicked in component');
     /*this.props.unpinPost(this.props.post._id).then(res => {
       this.props.addFlashMessage({
-        type: this.props.messages.messageType,
-        text: this.props.messages.messageMessage
+        type: this.props.messages.type,
+        text: this.props.messages.content
       });
     });*/
+  }
+
+  getUserPosts(username) {
+    console.log('getUserPosts clicked in component');
+    this.props.getUserPosts(username);
   }
 
   render() {
@@ -56,7 +63,7 @@ class Post extends React.Component {
             unpinPost={this.unpinPost.bind(this)}
           />
 
-          <a className="btn btn-primary" href="http://localhost:3000" >{this.props.username}</a>
+          <div className="btn btn-primary" onClick={() => this.getUserPosts(this.props.post.postedBy)} >{this.props.post.postedBy}</div>
 
           <GetDeleteButton 
             post={this.props.post}
@@ -79,4 +86,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { deletePost, pinPost, unpinPost, addFlashMessage})(Post);
+export default connect(mapStateToProps, { deletePost, pinPost, unpinPost, getUserPosts, addFlashMessage})(Post);

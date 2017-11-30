@@ -3,14 +3,8 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/authActions';
 import { getAllPosts } from '../../actions/postsActions';
 import Post from '../common/Post';
-//import Test from './Test';
 
-class MainPage extends React.Component {
-  /*componentWillMount() {
-  	 console.log('will mount - getAllPosts');
-    this.props.getAllPosts();
-  }*/
-	
+class MainPage extends React.Component {	
   componentWillMount() {
     console.log('will mount');
     if(!this.props.auth.isAuthenticated) {
@@ -27,14 +21,13 @@ class MainPage extends React.Component {
 
   componentDidMount() {
     console.log('did mount');
-    console.log(this.props.state);
   }
 
   render(){
   	 console.log(this.props.state);
     return (
       <div className="manyBooksContainer">
-        {this.props.allPosts.map((post, index) =>
+        {this.props.postsToDisplay.map((post, index) =>
           <Post key={index} post={post}/>
         )}
       </div>
@@ -46,7 +39,7 @@ function mapStateToProps(state) {
   return {
     state: state,
     auth: state.auth,
-    allPosts: state.postsReducer.allPosts
+    postsToDisplay: state.postsReducer.postsToDisplay
   };
 }
 

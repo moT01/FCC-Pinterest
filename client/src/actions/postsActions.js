@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-export function loadAllPosts(allPosts) {
+export function loadPosts(postsToDisplay) {
   return {
-    type: 'LOAD_ALL_POSTS',
-    allPosts
+    type: 'LOAD_POSTS',
+    postsToDisplay
   };
 }
 
-export function allPostsPlusMessage(allPosts, message) {
+export function postsPlusMessage(postsToDisplay, message) {
   return {
     type: 'POSTS_AND_MESSAGE',
-    allPosts,
+    postsToDisplay,
     message
   };
 }
@@ -23,21 +23,44 @@ export function addFlashMessage(message) {
 }
 
 export function getAllPosts(data) {
-  console.log('get all posts action');
+  console.log('getAllPosts action');
   return dispatch => {
     return axios.get('/api/posts/allPosts', data).then(res => {
-      console.log('allposts action.then');
+      console.log('getAllPosts action.then');
       const allPosts = res.data;
-      dispatch(loadAllPosts(allPosts));
+      dispatch(loadPosts(allPosts));
+    });
+  }
+}
+
+export function getMyPins(username) {
+  console.log('getMyPins action');
+  console.log(username);
+  return dispatch => {
+    return axios.patch('/api/posts/getPins', { username }).then(res => {
+      console.log('getMyPins action.then');
+      const myPins = res.data;
+      dispatch(loadPosts(myPins));
+    });
+  }
+}
+
+export function getUserPosts(username) {
+  console.log('getUserPosts action');
+  return dispatch => {
+    return axios.patch('/api/posts/getUserPosts', { username }).then(res => {
+      console.log('getUserPosts action.then');
+      const userPosts = res.data;
+      dispatch(loadPosts(userPosts));
     });
   }
 }
 
 export function createPost(data) {
-  console.log('create post action');
+  console.log('createPost action');
   return dispatch => {
     return axios.post('/api/posts/createPost', data).then(res => {
-      console.log('create action.then');
+      console.log('createPost action.then');
       const message = res.data[0];
       dispatch(addFlashMessage(message));      
     });
@@ -45,21 +68,22 @@ export function createPost(data) {
 }
 
 export function deletePost(postID, postOwner, authenticatedUsername) {
-  console.log('delete post action');
+  console.log('deletePost action');
   return dispatch => {
     return axios.patch('/api/posts/deletePost', { postID, postOwner, authenticatedUsername }).then(res => {
-      console.log('delete action.then => dispatch');
-      const allPosts = res.data[0];
+      console.log('deletePost action.then => dispatch');
+      const postsToDisplay = res.data[0];
       const messages = res.data[1];
-      dispatch(allPostsPlusMessage(allPosts, messages));  
+      dispatch(postsPlusMessage(postsToDisplay, messages));  
     });
   }
 }
 
-export function pinPost(data) {
+export function pinPost(postID, username) {
   console.log('pin post action');
+  console.log(postID, username);
   return dispatch => {
-    return axios.post('/api/posts/pinPost/:postID/"userID', data).then(res => {
+    return axios.post('/api/posts/pinPost', { postID, username}).then(res => {
       console.log('pinPost action.then');
       console.log(res.data[0]);
       const message = res.data[0];
