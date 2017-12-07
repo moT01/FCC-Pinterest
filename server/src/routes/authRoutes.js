@@ -3,18 +3,22 @@ import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import expressJwt from 'express-jwt';
 import request from 'request';
+require('dotenv').config();
+
+console.log("authroutes");
 
 let router = express.Router();
 
 var createToken = function(auth) {
   return jwt.sign({
     id: auth.id
-  }, 'secret',
+  }, process.env.JWT_SECRET,
   {
     expiresIn: 60 * 120
   });
 };
 
+console.log("authroutes");
 var generateToken = function (req, res, next) {
   req.token = createToken(req.auth);
   console.log("gen token");
@@ -28,16 +32,21 @@ var sendToken = function (req, res) {
   return res.status(200).send(JSON.stringify(req.user));
 };
 
+//authenticating user on each call to the api
 var authenticate = expressJwt({
-  secret: 'secret',
+  secret: process.env.JWT_SECRET,
   requestProperty: 'auth',
   getToken: function(req) {
     if (req.headers['x-auth-token']) {
+      console.log("expressjwt");
       return req.headers['x-auth-token'];
     }
     return null;
   }
 });
+
+
+/*this end point handles sending request token from client to twitter and sending it back to client*/
 
 router.route('/twitter/reverse')
   .post(function(req, res) {
@@ -59,6 +68,9 @@ router.route('/twitter/reverse')
     });
   });
 
+
+/*this end point handels sending verification code from client to twitter and getting access token
+ from twitter and making jwt and sending it back to client*/
 
 router.route('/twitter')
   .post((req, res, next) => {
@@ -101,18 +113,7 @@ router.route('/twitter')
 
 export default router;
 
-// router.get('/twitterLogin', passport.authenticate('twitter'));
-//
-// router.get('/twitterReturn', passport.authenticate('twitter', {
-//   failureRedirect: 'http://localhost:3000',
-//   successRedirect: 'http://localhost:3000'
-// }));
-//
-// router.get('/auth/twitter/callback',
-//   passport.authenticate('twitter', { failureRedirect: 'http://localhost:3000' }),
-//   function(req, res) {
-//     res.redirect('http://localhost:3000');
-//   });
+
 // router.get('/login', function(req, res, next) {
 //   console.log('/login');
 //   console.log(req.user);
