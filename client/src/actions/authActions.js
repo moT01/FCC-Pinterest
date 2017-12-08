@@ -1,4 +1,4 @@
-import axios from 'axios';
+//import axios from 'axios';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 
@@ -18,16 +18,28 @@ export function logout() {
   }
 }
 
-export function login(){
-  console.log('login action');
+export function login(res) {
+  console.log(res.headers.get('x-auth-token'));
+  const token = res.headers.get('x-auth-token');
   return dispatch => {
-    return axios.get('/api/auth/login').then(res => {
-      const token = res.data.token;
-      if(token) {
-        localStorage.setItem('jwtToken', token);
-        setAuthorizationToken(token);
-        dispatch(setCurrentUser(jwtDecode(token)));
-       }
-    });
+    if(token) {
+      localStorage.setItem('jwtToken', token);
+      setAuthorizationToken(token);
+      dispatch(setCurrentUser(jwtDecode(token)));
+     }
   }
 }
+
+// export function login(){
+//   console.log('login action');
+//   return dispatch => {
+//     return axios.get('/api/auth/login').then(res => {
+//       const token = res.data.token;
+//       if(token) {
+//         localStorage.setItem('jwtToken', token);
+//         setAuthorizationToken(token);
+//         dispatch(setCurrentUser(jwtDecode(token)));
+//        }
+//     });
+//   }
+// }

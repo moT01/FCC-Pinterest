@@ -2,47 +2,31 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-//import { logout } from '../actions/authActions';
+import { login, logout } from '../actions/authActions';
 import { getAllPosts, getMyPins, getUserPosts } from '../actions/postsActions';
 import TwitterLogin from 'react-twitter-auth';
 import './NavigationBar.css';
 
 class NavigationBar extends React.Component {
-
-  constructor() {
-    super();
-    this.state = {
-      isAuthenticated: false,
-      user: null,
-      token: ''
-    };
-  }
-
   onSuccess = (response) => {
-    const token = response.headers.get('x-auth-token');
-    response.json().then(user => {
-      if (token) {
-        this.setState({isAuthenticated: true, user: user, token: token});
-      }
-    });
+    this.props.login(response);
   };
 
+  //needs to be connected to the error handleing mechanism.
   onFailed = (error) => {
     alert(error);
   };
 
-  logout = () => {
-    this.setState({isAuthenticated: false, token: '', user: null})
-  };
 
-  /*logout(e){
+  logout(e){
+    this.setState({isAuthenticated: false, token: '', user: null})
     console.log('logout click in component');
     e.preventDefault();
     this.props.logout();
-  }*/
+  }
 
   allPosts(e) {
-    console.log('logout click in component');
+    console.log('allPosts click in component');
     e.preventDefault();
     this.props.getAllPosts();
   }
@@ -60,27 +44,7 @@ class NavigationBar extends React.Component {
   }
 
   render(){
-    //const { isAuthenticated } = this.props.auth;
-    console.log("isAuthenticated: " + this.state.isAuthenticated);
-    let content = !!this.state.isAuthenticated ?
-      (
-        <div>
-          <p>Authenticated</p>
-          <div>
-            {this.state.user.email}
-          </div>
-          <div>
-            <button onClick={this.logout} className="button" >
-              Log out
-            </button>
-          </div>
-        </div>
-      ) :
-      (
-        <TwitterLogin loginUrl="http://localhost:8080/api/auth/twitter"
-                      onFailure={this.onFailed} onSuccess={this.onSuccess}
-                      requestTokenUrl="http://localhost:8080/api/auth/twitter/reverse"/>
-      );
+    const { isAuthenticated } = this.props.auth;
 
     const userLinks = (
       <ul className="navbarButtonContainer">
@@ -92,17 +56,21 @@ class NavigationBar extends React.Component {
       </ul>
     );
 
+    // the twitter component uses the 'react-twitter-auth' to connect to twitter through the backend
     const guestLinks = (
       <ul className="navbarButtonContainer">
-        <li className="singleButtonContainer">{content}</li>
+        <li className="singleButtonContainer">
+          <TwitterLogin loginUrl="http://localhost:8080/api/auth/twitter"
+                      onFailure={this.onFailed} onSuccess={this.onSuccess}
+                      requestTokenUrl="http://localhost:8080/api/auth/twitter/reverse"/>
+          </li>
       </ul>
     );
 
     return (
       <nav className="navbarContainer">
         <div className="singleButtonContainer"><Link to="/" className="navbarBrand">Pinterest</Link></div>
-
-        { this.state.isAuthenticated ? userLinks : guestLinks }
+        {isAuthenticated ? userLinks : guestLinks}
       </nav>
     );
   }
@@ -121,4 +89,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {  getAllPosts, getMyPins, getUserPosts })(NavigationBar);
+export default connect(mapStateToProps, { logout, login, getAllPosts, getMyPins, getUserPosts })(NavigationBar);
