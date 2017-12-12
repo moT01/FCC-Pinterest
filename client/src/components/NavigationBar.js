@@ -48,10 +48,10 @@ class NavigationBar extends React.Component {
 
     const userLinks = (
       <ul className="navbarButtonContainer">
-        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.allPosts.bind(this)}>Browse</Link></li>
+        <li className="singleButtonContainer"><Link to="/" className="navbarButton">Browse</Link></li>
         <li className="singleButtonContainer"><Link to="/createPost" className="navbarButton">Create</Link></li>
-        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.myPosts.bind(this)}>myPosts</Link></li>
-        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.myPins.bind(this)}>myPins</Link></li>
+        <li className="singleButtonContainer"><Link to="/myPosts" className="navbarButton" >myPosts</Link></li>
+        <li className="singleButtonContainer"><Link to="/myPins" className="navbarButton" >myPins</Link></li>
         <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>Logout</Link></li>
       </ul>
     );
