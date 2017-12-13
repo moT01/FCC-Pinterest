@@ -9,9 +9,9 @@ let router = express.Router();
 
 router.get('/allPosts', (req, res) => {
 	console.log('/allPosts');
-	
+
    postsModel.find().then(allPosts => {
-     res.send(allPosts) 
+     res.send(allPosts)
    }).catch(err => {
      res.send([err])
    });
@@ -37,8 +37,8 @@ router.patch('/getPins', (req, res) => {
   //not written yet
   postsModel.find().then(allPosts => {
   console.log(allPosts);
-    res.send(allPosts) 
-    
+    res.send(allPosts)
+
   }).catch(err => {
     res.send([err])
   });
@@ -46,25 +46,27 @@ router.patch('/getPins', (req, res) => {
 
 
 router.post('/createPost', (req, res) => {
-  const { imageURL, userID, username } = req.body;
+  const { imageURL, userID} = req.body;
   let message = {'type': 'error', 'content': 'Could not add image'};
 
   async function createPost() {
     var newPost = new postsModel({
-      postedBy: username,
+      postedBy: userID,
       imageURL: imageURL
     });
 
+		console.log(newPost);
     newPost.save().then(() => {
     	message.type = 'success';
       message.content = 'Added successfully';
 	   res.send([message]);
     }).catch(e => {
+			console.log(e);
       res.send([message]);
 	 });
   }
 
-  if(isImageURL(imageURL)) {       
+  if(isImageURL(imageURL)) {
     createPost();
   } else {
     res.send([message]);
@@ -102,7 +104,7 @@ router.post('/pinPost', (req, res) => {
   console.log(username);
 
   let message = { 'type': 'error', 'content': 'Could not pin post' };
-    
+
   async function pinPost() {
 	 postsModel.findOne({ "_id": postID }, (err, post) => {
 	   if (err) {
@@ -114,7 +116,7 @@ router.post('/pinPost', (req, res) => {
 	   post.save().then(() => {
         message.type = 'success';
         message.content = 'pinned';
-        res.send([message]);	
+        res.send([message]);
 	   }).catch(e => {
         message.type = 'error';
         message.content = 'server error';
@@ -133,11 +135,11 @@ router.patch('/unpinPost', (req, res) => {
 
   //so in here i need to remove username from postID:pinnedBy
   //and return a flash message -> see delete route
-  
+
   postsModel.find().then(allPosts => {
   console.log(allPosts);
-    res.send(allPosts) 
-    
+    res.send(allPosts)
+
   }).catch(err => {
     res.send([err])
   });
