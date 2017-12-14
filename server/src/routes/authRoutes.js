@@ -5,7 +5,7 @@ import expressJwt from 'express-jwt';
 import request from 'request';
 require('dotenv').config();
 
-console.log("authroutes");
+
 
 let router = express.Router();
 
@@ -18,17 +18,15 @@ var createToken = function(auth) {
   });
 };
 
-console.log("authroutes");
+
 var generateToken = function (req, res, next) {
   req.token = createToken(req.auth);
-  console.log("gen token");
   return next();
 };
 
 
 var sendToken = function (req, res) {
   res.setHeader('x-auth-token', req.token);
-  console.log("send token");
   return res.status(200).send(JSON.stringify(req.user));
 };
 
@@ -38,7 +36,6 @@ var authenticate = expressJwt({
   requestProperty: 'auth',
   getToken: function(req) {
     if (req.headers['x-auth-token']) {
-      console.log("expressjwt");
       return req.headers['x-auth-token'];
     }
     return null;
@@ -62,7 +59,6 @@ router.route('/twitter/reverse')
         return res.send(500, { message: e.message });
       }
 
-      console.log("exchange token with browser");
       var jsonStr = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
       res.send(JSON.parse(jsonStr));
     });
@@ -98,11 +94,9 @@ router.route('/twitter')
       next();
     });
   }, passport.authenticate('twitter-token', {session: false}), function(req, res, next) {
-    console.log("in auth");
       if (!req.user) {
         return res.send(401, 'User Not Authenticated');
       }
-      console.log("passport.authenticate");
       // prepare token for API
       req.auth = {
         id: req.user.id

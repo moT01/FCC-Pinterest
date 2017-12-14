@@ -61,8 +61,8 @@ export function createPost(data) {
   return dispatch => {
     return axios.post('/api/posts/createPost', data).then(res => {
       console.log('createPost action.then');
-      const message = res.data[0];
-      dispatch(addFlashMessage(message));      
+      // const message = res.data[0];
+      // dispatch(addFlashMessage(message));
     });
   }
 }
@@ -74,7 +74,7 @@ export function deletePost(postID, postOwner, authenticatedUsername) {
       console.log('deletePost action.then => dispatch');
       const postsToDisplay = res.data[0];
       const messages = res.data[1];
-      dispatch(postsPlusMessage(postsToDisplay, messages));  
+      dispatch(postsPlusMessage(postsToDisplay, messages));
     });
   }
 }
@@ -87,7 +87,7 @@ export function pinPost(postID, username) {
       console.log('pinPost action.then');
       console.log(res.data[0]);
       const message = res.data[0];
-      dispatch(addFlashMessage(message));      
+      dispatch(addFlashMessage(message));
     });
   }
 }
@@ -99,7 +99,7 @@ export function unpinPost(data) {
       console.log('unpin action.then');
       console.log(res.data[0]);
       const message = res.data[0];
-      dispatch(addFlashMessage(message));      
+      dispatch(addFlashMessage(message));
     });
   }
 }

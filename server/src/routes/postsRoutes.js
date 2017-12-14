@@ -55,13 +55,11 @@ router.post('/createPost', (req, res) => {
       imageURL: imageURL
     });
 
-		console.log(newPost);
     newPost.save().then(() => {
     	message.type = 'success';
       message.content = 'Added successfully';
 	   res.send([message]);
     }).catch(e => {
-			console.log(e);
       res.send([message]);
 	 });
   }

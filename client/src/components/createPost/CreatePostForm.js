@@ -62,9 +62,11 @@ class CreatePostForm extends React.Component {
     e.preventDefault();
     this.props.createPost(this.state).then(() => {
       this.props.addFlashMessage({
-        type: this.props.message.type,
-        text: this.props.message.content
+        type: "success",
+        text: "picture added successfully"
       });
+      this.setState({defaultImage: "https://goo.gl/yNUY3G", sendable: false, imageURL: '' });
+
     });
     console.log('end of submit create post form');
   }

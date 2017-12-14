@@ -1,5 +1,5 @@
 require('dotenv').config();
-console.log("index");
+
 
 import express from 'express';
 import path from 'path';
