@@ -1,25 +1,29 @@
 import axios from 'axios';
+import { LOAD_POSTS, CREATE_POST } from './types';
 
 export function loadPosts(postsToDisplay) {
   return {
-    type: 'LOAD_POSTS',
+    type: LOAD_POSTS,
     postsToDisplay
   };
 }
 
-export function postsPlusMessage(postsToDisplay, message) {
+export function AddNewPost(post) {
   return {
-    type: 'POSTS_AND_MESSAGE',
-    postsToDisplay,
-    message
+    type: CREATE_POST,
+    post
   };
 }
 
-export function addFlashMessage(message) {
-  return {
-    type: 'ADD_FLASH',
-    message
-  };
+export function createPost(data) {
+  console.log('createPost action');
+  return dispatch => {
+    return axios.post('/api/posts/createPost', data).then(res => {
+      console.log('createPost action.then');
+      const newPost = (res.data[1]);
+      dispatch(AddNewPost(newPost));
+    });
+  }
 }
 
 export function getAllPosts(data) {
@@ -56,17 +60,7 @@ export function getUserPosts(username) {
   }
 }
 
-export function createPost(data) {
-  console.log('createPost action');
-  return dispatch => {
-    return axios.post('/api/posts/createPost', data).then(res => {
-      console.log('createPost action.then');
-      console.log(res.data[0]);
-      // const message = res.data[0];
-      // dispatch(addFlashMessage(message));
-    });
-  }
-}
+
 
 export function deletePost(postID, postOwner, authenticatedUsername) {
   console.log('deletePost action');
@@ -74,8 +68,8 @@ export function deletePost(postID, postOwner, authenticatedUsername) {
     return axios.patch('/api/posts/deletePost', { postID, postOwner, authenticatedUsername }).then(res => {
       console.log('deletePost action.then => dispatch');
       const postsToDisplay = res.data[0];
-      const messages = res.data[1];
-      dispatch(postsPlusMessage(postsToDisplay, messages));
+      //const messages = res.data[1];
+      //dispatch(postsPlusMessage(postsToDisplay, messages));
     });
   }
 }
@@ -87,8 +81,8 @@ export function pinPost(postID, username) {
     return axios.post('/api/posts/pinPost', { postID, username}).then(res => {
       console.log('pinPost action.then');
       console.log(res.data[0]);
-      const message = res.data[0];
-      dispatch(addFlashMessage(message));
+      //const message = res.data[0];
+      //dispatch(addFlashMessage(message));
     });
   }
 }
@@ -99,8 +93,8 @@ export function unpinPost(data) {
     return axios.post('/api/posts/createPost', data).then(res => {
       console.log('unpin action.then');
       console.log(res.data[0]);
-      const message = res.data[0];
-      dispatch(addFlashMessage(message));
+      //const message = res.data[0];
+      //dispatch(addFlashMessage(message));
     });
   }
 }

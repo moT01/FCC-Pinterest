@@ -55,10 +55,11 @@ router.post('/createPost', (req, res) => {
       imageURL: imageURL
     });
 
-    newPost.save().then(() => {
+    newPost.save().then( data => {
+			console.log(data);
     	message.type = 'success';
       message.content = 'holly molly';
-	   res.send([message]);
+	   res.send({message, data});
     }).catch(e => {
       res.send([message]);
 	 });
