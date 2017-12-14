@@ -5,23 +5,20 @@ import { getAllPosts } from '../../actions/postsActions';
 import Post from '../common/Post';
 
 class MainPage extends React.Component {
-  // // componentWillMount() {
-  // //   console.log('will mount');
-  // //   if(!this.props.auth.isAuthenticated) {
-  // //     console.log('will mount - login()');
-  // //     this.props.login().then(() => {
-  // //       console.log('login.then => getAllPosts');
-  // //       this.props.getAllPosts();
-  // //     });
-  // //   } else {
-  // //   	console.log('getAllPosts');
-  // //     this.props.getAllPosts();
-  // //   }
-  // // }
-  //
-  // componentDidMount() {
-  //   console.log('did mount');
-  // }
+  componentWillMount() {
+    console.log('will mount');
+    console.log(this.props.postsToDisplay.length);
+    if(this.props.postsToDisplay.length === 0) {
+      this.props.getAllPosts();
+      console.log('getAllPosts');
+    } else {
+
+    }
+  }
+
+  componentDidMount() {
+    console.log('did mount');
+  }
 
   render(){
   	 console.log(this.props.state);

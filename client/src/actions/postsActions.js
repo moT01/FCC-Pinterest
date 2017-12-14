@@ -61,6 +61,7 @@ export function createPost(data) {
   return dispatch => {
     return axios.post('/api/posts/createPost', data).then(res => {
       console.log('createPost action.then');
+      console.log(res.data[0]);
       // const message = res.data[0];
       // dispatch(addFlashMessage(message));
     });

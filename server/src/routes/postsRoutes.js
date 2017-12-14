@@ -57,7 +57,7 @@ router.post('/createPost', (req, res) => {
 
     newPost.save().then(() => {
     	message.type = 'success';
-      message.content = 'Added successfully';
+      message.content = 'holly molly';
 	   res.send([message]);
     }).catch(e => {
       res.send([message]);
