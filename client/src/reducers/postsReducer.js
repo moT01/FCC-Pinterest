@@ -1,6 +1,5 @@
 const initialState = {
-  postsToDisplay: [],
-  message: ''
+  postsToDisplay: []
 };
 
 export default (state = initialState, action = {}) => {

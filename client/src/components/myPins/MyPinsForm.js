@@ -1,55 +1,30 @@
 import React from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { createPost } from '../../actions/postsActions';
+import { getAllPosts } from '../../actions/postsActions';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../../actions/flashMessages.js';
+import Post from '../common/Post';
 //import PropTypes from 'prop-types'
 
 class MyPinsForm extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      imageURL: '',
-      userID: this.props.id,
-      username: this.props.username,
-      isLoading: false
-    };
+  componentWillMount() {
+    console.log("userposts" + this.props.userPosts);
+    if(this.props.id && this.props.userPosts.length === 0) {
+      this.props.getAllPosts();
+    } else {
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onChange(e){
-    this.setState({[e.target.name]: e.target.value});
-  }
-
-  onSubmit(e) {
-  	 //console.log('submit create post form');
-    e.preventDefault();
-    this.props.createPost(this.state).then(() => {
-      this.props.addFlashMessage({
-        type: this.props.message.type,
-        text: this.props.message.content
-      });
-    });
-    //console.log('end of submit create post form');
+    }
   }
 
   render() {
-    const { imageURL, isLoading } = this.state;
-
+    console.log(this.props.postsToDisplay);
     return (
-      <form onSubmit={this.onSubmit}>
-        <h1> My Pins</h1>
-        <TextFieldGroup
-          field="imageURL"
-          label="Image URL:"
-          name="imageURL"
-          value={imageURL}
-          onChange={this.onChange}
-          />
-        <button type="submit" disabled={isLoading} className="btn btn-primary">Add</button>
-      </form>
+      <div className="manyBooksContainer">
+        {this.props.postsToDisplay.map((post, index) =>
+          <Post key={index} post={post}/>
+        )}
+      </div>
     );
   }
 }
@@ -62,8 +37,18 @@ function mapStateToProps(state) {
     return {
       id: state.auth.user.id,
       username: state.auth.user.username,
-      message: state.postsReducer.message
+      message: state.postsReducer.message,
+      userPosts: state.auth.userPosts,
+      state: state,
+      auth: state.auth,
+      postsToDisplay: state.postsReducer.postsToDisplay
     }
 }
 
-export default connect(mapStateToProps, {createPost, addFlashMessage})(MyPinsForm);
+
+/*CreatePostForm.propTypes = {
+  createPost: PropTypes.func.isRequired
+}*/
+
+
+export default connect(mapStateToProps, {createPost, addFlashMessage, getAllPosts})(MyPinsForm);
