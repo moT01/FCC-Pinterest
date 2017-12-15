@@ -20,12 +20,15 @@ router.get('/allPosts', (req, res) => {
 
 router.patch('/getUserPosts', (req, res) => {
   console.log('/getUserPosts');
-  const { username } = req.body;
 
-  postsModel.find({ "postedBy": username }).then(usersPosts => {
-    res.send(usersPosts);
+  const { id } = req.body;
+	console.log(id);
+  postsModel.find({ 'postedBy': id }).then(userPosts => {
+		console.log("posts: " + userPosts);
+    res.send(userPosts);
   }).catch(err => {
-    res.send([err])
+		console.log(err);
+    res.send([err]);
   });
 });
 

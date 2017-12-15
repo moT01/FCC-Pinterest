@@ -1,14 +1,17 @@
-import { LOAD_POSTS, CREATE_POST } from '../actions/types';
+import { LOAD_POSTS, CREATE_POST, GET_MY_POSTS } from '../actions/types';
 
 
 const initialState = {
-  postsToDisplay: []
+  postsToDisplay: [],
+  myPosts: [],
+  userPosts: []
 };
 
 export default (state = initialState, action = {}) => {
   switch(action.type) {
     case LOAD_POSTS:
-      return {
+    console.log(action);
+      return { ... state,
         postsToDisplay: action.postsToDisplay
       }
     case CREATE_POST:
@@ -18,6 +21,11 @@ export default (state = initialState, action = {}) => {
           ...state.postsToDisplay,
           action.post
         ]
+      }
+    case GET_MY_POSTS:
+    console.log(action);
+      return { ... state,
+      myPosts: [action.posts]
       }
     default: return state;
   }

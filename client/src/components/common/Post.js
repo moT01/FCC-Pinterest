@@ -1,5 +1,5 @@
 import React from 'react';
-import { deletePost, pinPost, unpinPost, getUserPosts } from '../../actions/postsActions';
+import { deletePost, pinPost, unpinPost, getMyPosts } from '../../actions/postsActions';
 import { GetPinButton, GetDeleteButton } from './PostConditionals';
 import { addFlashMessage } from '../../actions/flashMessages';
 import { connect } from 'react-redux';
@@ -50,10 +50,11 @@ class Post extends React.Component {
   }
 
   render() {
+    console.log("post"+this.props.post);
     return (
       <div className="singleBookContainer">
-        <img src={this.props.post.imageURL} className="bookImage" alt=":)"/>      
-      
+        <img src={this.props.post.imageURL} className="bookImage" alt=":)"/>
+
         <div className="bookButtonContainer">
           <GetPinButton
             post={this.props.post}
@@ -65,7 +66,7 @@ class Post extends React.Component {
 
           <div className="btn btn-primary" onClick={() => this.getUserPosts(this.props.post.postedBy)} >{this.props.post.postedBy}</div>
 
-          <GetDeleteButton 
+          <GetDeleteButton
             post={this.props.post}
             userID={this.props.id}
             username={this.props.username}
@@ -86,4 +87,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { deletePost, pinPost, unpinPost, getUserPosts, addFlashMessage})(Post);
+export default connect(mapStateToProps, { deletePost, pinPost, unpinPost, getMyPosts, addFlashMessage})(Post);

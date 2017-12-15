@@ -1,7 +1,6 @@
 import React from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
-import { createPost } from '../../actions/postsActions';
-import { getAllPosts } from '../../actions/postsActions';
+import { deletePost, getMyPosts } from '../../actions/postsActions';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../../actions/flashMessages.js';
 import Post from '../common/Post';
@@ -9,19 +8,17 @@ import Post from '../common/Post';
 
 class MyPostsForm extends React.Component {
   componentWillMount() {
-    console.log("userposts" + this.props.userPosts);
-    if(this.props.id && this.props.userPosts.length === 0) {
-      this.props.getAllPosts();
+    if(this.props.id && this.props.myPosts.length === 0) {
+      this.props.getMyPosts(this.props.id);
     } else {
-
     }
   }
 
   render() {
-    console.log(this.props.postsToDisplay);
+    //console.log("myPostsfrom" + this.props.myPosts);
     return (
       <div className="manyBooksContainer">
-        {this.props.postsToDisplay.map((post, index) =>
+        {this.props.myPosts.map((post, index) =>
           <Post key={index} post={post}/>
         )}
       </div>
@@ -38,11 +35,11 @@ function mapStateToProps(state) {
       id: state.auth.user.id,
       username: state.auth.user.username,
       message: state.postsReducer.message,
-      userPosts: state.auth.userPosts,
+      myPosts: state.postsReducer.myPosts,
       state: state,
       auth: state.auth,
       postsToDisplay: state.postsReducer.postsToDisplay
     }
 }
 
-export default connect(mapStateToProps, {createPost, addFlashMessage, getAllPosts})(MyPostsForm);
+export default connect(mapStateToProps, {addFlashMessage, getMyPosts, deletePost})(MyPostsForm);

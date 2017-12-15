@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login, logout } from '../actions/authActions';
-import { getAllPosts, getMyPins, getUserPosts } from '../actions/postsActions';
+import { getAllPosts, getMyPins, getMyPosts } from '../actions/postsActions';
 import TwitterLogin from 'react-twitter-auth';
 import './NavigationBar.css';
 
@@ -25,23 +25,7 @@ class NavigationBar extends React.Component {
     this.props.logout();
   }
 
-  allPosts(e) {
-    console.log('allPosts click in component');
-    e.preventDefault();
-    this.props.getAllPosts();
-  }
 
-  myPins(e) {
-    console.log('myPins clicked in nav component');
-    e.preventDefault();
-    this.props.getMyPins(this.props.username);
-  }
-
-  myPosts(e) {
-    console.log('myPosts clicked in nav component');
-    e.preventDefault();
-    this.props.getUserPosts(this.props.username);
-  }
 
   render(){
     const { isAuthenticated } = this.props.auth;
@@ -89,4 +73,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { logout, login, getAllPosts, getMyPins, getUserPosts })(NavigationBar);
+export default connect(mapStateToProps, { logout, login })(NavigationBar);
