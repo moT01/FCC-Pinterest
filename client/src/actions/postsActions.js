@@ -20,7 +20,9 @@ export function createPost(data) {
   return dispatch => {
     return axios.post('/api/posts/createPost', data).then(res => {
       console.log('createPost action.then');
-      const newPost = (res.data[1]);
+      console.log(res.data.post);
+      const newPost = (res.data.post);
+
       dispatch(AddNewPost(newPost));
     });
   }
