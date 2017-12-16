@@ -16,7 +16,7 @@ class Post extends React.Component {
 
   deletePost(postID, postOwnerID) {
   	 console.log('delete clicked in component');
-    this.props.deletePost(postID, postOwnerID, this.props.userID).then(res => {
+    this.props.deletePost(postID, postOwnerID, this.props.id).then(res => {
     	console.log(this.props.state);
       this.props.addFlashMessage({
         type: "success",
@@ -59,7 +59,7 @@ class Post extends React.Component {
         <div className="bookButtonContainer">
           <GetPinButton
             post={this.props.post}
-            userID={this.props.userID}
+            userID={this.props.id}
             username={this.props.username}
             pinPost={this.pinPost.bind(this)}
             unpinPost={this.unpinPost.bind(this)}
@@ -68,7 +68,7 @@ class Post extends React.Component {
 
           <GetDeleteButton
             post={this.props.post}
-            userID={this.props.userID}
+            userID={this.props.id}
             username={this.props.username}
             deletePost={this.deletePost}
           />
@@ -82,7 +82,7 @@ function mapStateToProps(state) {
   return {
     state: state,
     messages: state.postsReducer.message,
-    userID: state.auth.user.id,
+    id: state.auth.user.id,
   	 username: state.auth.user.username
   }
 }
