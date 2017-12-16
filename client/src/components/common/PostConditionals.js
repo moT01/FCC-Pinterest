@@ -27,7 +27,7 @@ export function GetDeleteButton(props) {
   }
 
   //if my post
-  if(props.username === props.post.postedBy) {
+  if(props.userID === props.post.postedBy) {
     return <div className="btn btn-primary" onClick={() => props.deletePost(props.post._id, props.post.postedBy)}>X</div>
   }
 

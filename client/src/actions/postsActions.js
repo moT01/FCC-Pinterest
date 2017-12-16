@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_MY_POSTS,LOAD_POSTS, CREATE_POST } from './types';
+import { GET_MY_POSTS,LOAD_POSTS, CREATE_POST, DELETE_POST } from './types';
 
 export function loadPosts(postsToDisplay) {
   return {
@@ -46,16 +46,23 @@ export function AddNewPost(post) {
   };
 }
 
+export function postToDelete(postID) {
+  return {
+    type: DELETE_POST,
+    postID
+  };
+}
 
 
-export function deletePost(postID, postOwner, authenticatedUsername) {
+
+export function deletePost(postID, postOwnerID, authenticatedUserID) {
   console.log('deletePost action');
+
   return dispatch => {
-    return axios.patch('/api/posts/deletePost', { postID, postOwner, authenticatedUsername }).then(res => {
+    return axios.patch('/api/posts/deletePost', { postID, postOwnerID, authenticatedUserID }).then(res => {
       console.log('deletePost action.then => dispatch');
-      const postsToDisplay = res.data[0];
-      //const messages = res.data[1];
-      //dispatch(postsPlusMessage(postsToDisplay, messages));
+      const postID = res.data[0];
+      dispatch(postToDelete(postID));
     });
   }
 }

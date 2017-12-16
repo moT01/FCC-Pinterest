@@ -77,21 +77,19 @@ router.post('/createPost', (req, res) => {
 
 
 router.patch('/deletePost', (req, res) => {
-  console.log('/delete');
-  const { postID, postOwner, authenticatedUsername } = req.body;
-  let message = { 'type': 'error', 'content': 'Could not delete post' };
-
+  console.log('/delete'); 
+  const { postID, postOwnerID, authenticatedUserID } = req.body;
+  console.log(postID);
+  
   async function deletePost(){
-    if(postOwner === authenticatedUsername) {
+
+    if(postOwnerID === authenticatedUserID) {
+
       postsModel.remove({_id:postID}).then(() => {
-		  postsModel.find().then(allPosts => {
-		  	 message.content = 'Post deleted';
-		    res.send([allPosts, message]);
-		  }).catch(err => {
-	       message.content = 'server error';
-	       res.send([[err], message]);
-		  });
-	   });
+		  res.send([postID]);
+		}).catch(err => {
+	     res.send([err]);
+		});
     }
   }
 

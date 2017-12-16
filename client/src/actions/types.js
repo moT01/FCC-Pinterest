@@ -6,3 +6,4 @@ export const BOOKS_AND_MESSAGE = 'BOOKS_AND_MESSAGE';
 export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
 export const CREATE_POST = 'CREATE_POST';
 export const GET_MY_POSTS = 'GET_MY_POSTS';
+export const DELETE_POST = 'DELETE_POST';

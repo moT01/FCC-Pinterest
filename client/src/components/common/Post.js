@@ -14,12 +14,13 @@ class Post extends React.Component {
     this.getUserPosts = this.getUserPosts.bind(this);
   }
 
-  deletePost(postID, postOwner) {
+  deletePost(postID, postOwnerID) {
   	 console.log('delete clicked in component');
-    this.props.deletePost(postID, postOwner, this.props.username).then(res => {
+    this.props.deletePost(postID, postOwnerID, this.props.userID).then(res => {
+    	console.log(this.props.state);
       this.props.addFlashMessage({
-        type: this.props.messages.type,
-        text: this.props.messages.content
+        type: "success",
+        text: "picture deleted"
       });
     });
   }
@@ -50,7 +51,7 @@ class Post extends React.Component {
   }
 
   render() {
-    console.log("post"+this.props.post);
+    console.log(this.props.post);
     return (
       <div className="singleBookContainer">
         <img src={this.props.post.imageURL} className="bookImage" alt=":)"/>
@@ -58,17 +59,16 @@ class Post extends React.Component {
         <div className="bookButtonContainer">
           <GetPinButton
             post={this.props.post}
-            userID={this.props.id}
+            userID={this.props.userID}
             username={this.props.username}
             pinPost={this.pinPost.bind(this)}
             unpinPost={this.unpinPost.bind(this)}
           />
 
-          <div className="btn btn-primary" onClick={() => this.getUserPosts(this.props.post.postedBy)} >{this.props.post.postedBy}</div>
 
           <GetDeleteButton
             post={this.props.post}
-            userID={this.props.id}
+            userID={this.props.userID}
             username={this.props.username}
             deletePost={this.deletePost}
           />
@@ -82,7 +82,7 @@ function mapStateToProps(state) {
   return {
     state: state,
     messages: state.postsReducer.message,
-    id: state.auth.user.id,
+    userID: state.auth.user.id,
   	 username: state.auth.user.username
   }
 }
