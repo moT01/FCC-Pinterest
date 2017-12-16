@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login, logout } from '../actions/authActions';
-import { getAllPosts, getMyPins, getMyPosts } from '../actions/postsActions';
 import TwitterLogin from 'react-twitter-auth';
 import './NavigationBar.css';
 

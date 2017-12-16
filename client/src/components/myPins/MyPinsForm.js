@@ -1,5 +1,4 @@
 import React from 'react';
-import TextFieldGroup from '../common/TextFieldGroup';
 import { createPost } from '../../actions/postsActions';
 import { getAllPosts } from '../../actions/postsActions';
 import { connect } from 'react-redux';

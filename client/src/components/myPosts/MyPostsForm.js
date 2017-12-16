@@ -1,5 +1,4 @@
 import React from 'react';
-import TextFieldGroup from '../common/TextFieldGroup';
 import { deletePost, getMyPosts } from '../../actions/postsActions';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../../actions/flashMessages.js';
