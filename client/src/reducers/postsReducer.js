@@ -1,4 +1,4 @@
-import { LOAD_POSTS, CREATE_POST, GET_MY_POSTS, DELETE_POST } from '../actions/types';
+import { LOAD_POSTS, CREATE_POST, GET_MY_POSTS, GET_USER_POSTS, DELETE_POST } from '../actions/types';
 
 
 const initialState = {
@@ -20,12 +20,21 @@ export default (state = initialState, action = {}) => {
         postsToDisplay: [
           ...state.postsToDisplay,
           action.post
+        ],
+        myPosts: [
+          ...state.myPosts,
+          action.post
         ]
       }
     case GET_MY_POSTS:
     console.log(action);
       return { ...state,
       myPosts: action.posts
+      }
+    case GET_USER_POSTS:
+    console.log(action);
+      return { ...state,
+      userPosts: action.posts
       }
     case DELETE_POST:
     console.log(action);

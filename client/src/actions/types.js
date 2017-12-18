@@ -4,4 +4,5 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LOAD_POSTS = 'LOAD_POSTS';
 export const CREATE_POST = 'CREATE_POST';
 export const GET_MY_POSTS = 'GET_MY_POSTS';
+export const GET_USER_POSTS = 'GET_USER_POSTS';
 export const DELETE_POST = 'DELETE_POST';

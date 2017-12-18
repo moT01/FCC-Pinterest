@@ -1,7 +1,28 @@
 import axios from 'axios';
-import { GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST } from './types';
+import { GET_USER_POSTS, GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST } from './types';
 
-export function loadPosts(postsToDisplay) {
+
+// getting other user's posts and dispatching to store
+export function loadUserPosts(posts) {
+  return {
+    type: GET_USER_POSTS,
+    posts
+  };
+}
+
+export function getUserPosts(id) {
+  console.log('getUserPosts action');
+  return dispatch => {
+    return axios.patch('/api/posts/getUserPosts', {id}).then(res => {
+      const myPosts = res.data;
+      console.log("myPosts" + myPosts);
+      dispatch(loadUserPosts(myPosts));
+    });
+  }
+}
+
+// getting all recent user posts and dispatching to store
+export function loadAllPosts(postsToDisplay) {
   return {
     type: LOAD_POSTS,
     postsToDisplay
@@ -14,11 +35,12 @@ export function getAllPosts(data) {
     return axios.get('/api/posts/allPosts', data).then(res => {
       const allPosts = res.data;
       console.log("allPosts" + res.data);
-      dispatch(loadPosts(allPosts));
+      dispatch(loadAllPosts(allPosts));
     });
   }
 }
 
+// getting the logged in user posts and dispatching to store
 export function loadMyPosts(posts) {
   return {
     type: GET_MY_POSTS,
@@ -37,6 +59,7 @@ export function getMyPosts(id) {
   }
 }
 
+// adding new a post and dispatching to store
 export function AddNewPost(post) {
   return {
     type: CREATE_POST,
@@ -56,6 +79,7 @@ export function createPost(data) {
   }
 }
 
+// deleting posts and dispatching to store
 export function postToDelete(postID) {
   return {
     type: DELETE_POST,
@@ -80,7 +104,7 @@ export function getMyPins(username) {
     return axios.patch('/api/posts/getPins', { username }).then(res => {
       console.log('getMyPins action.then');
       const myPins = res.data;
-      dispatch(loadPosts(myPins));
+      dispatch(loadAllPosts(myPins));
     });
   }
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import { deletePost, pinPost, unpinPost, getMyPosts } from '../../actions/postsActions';
 import { GetPinButton, GetDeleteButton } from './PostConditionals';
+//import  UserPostsPage  from '../userPosts/UserPostsPage';
 import { addFlashMessage } from '../../actions/flashMessages';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './Post.css';
 
 class Post extends React.Component {
@@ -26,13 +28,17 @@ class Post extends React.Component {
   }
 
   pinPost() {
-  	 console.log('pin clicked in component');
+  	console.log('pin clicked in component');
     this.props.pinPost(this.props.post._id, this.props.username).then(res => {
       this.props.addFlashMessage({
         type: this.props.messages.type,
         text: this.props.messages.content
       });
     });
+  }
+
+  goToUserPage(){
+
   }
 
   unpinPost() {
@@ -46,12 +52,12 @@ class Post extends React.Component {
   }
 
   getUserPosts(username) {
-    console.log('getUserPosts clicked in component');
+    //console.log(this.props.post.postedBy);
     this.props.getUserPosts(username);
   }
 
   render() {
-    console.log(this.props.post);
+    console.log(this.props.post.postedBy);
     return (
       <div className="singleBookContainer">
         <img src={this.props.post.imageURL} className="bookImage" alt=":)"/>
@@ -64,6 +70,13 @@ class Post extends React.Component {
             pinPost={this.pinPost.bind(this)}
             unpinPost={this.unpinPost.bind(this)}
           />
+        <Link to={'/userPage/'+ this.props.post.postedBy}>
+
+            <div className="btn btn-primary">
+
+                user
+              </div>
+          </Link>
 
 
           <GetDeleteButton
@@ -83,7 +96,7 @@ function mapStateToProps(state) {
     state: state,
     messages: state.postsReducer.message,
     id: state.auth.user.id,
-  	 username: state.auth.user.username
+  	username: state.auth.user.username
   }
 }
 
