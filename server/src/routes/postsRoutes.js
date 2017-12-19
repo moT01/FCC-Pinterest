@@ -97,30 +97,23 @@ router.patch('/deletePost', (req, res) => {
 });
 
 
-router.post('/pinPost', (req, res) => {
+router.patch('/pinPost', (req, res) => {
   console.log('/pinPost');
-  const { postID, username } = req.body;
+  const { postID, userID } = req.body;
   console.log(postID);
-  console.log(username);
-
-  let message = { 'type': 'error', 'content': 'Could not pin post' };
+  console.log(userID);
 
   async function pinPost() {
 	 postsModel.findOne({ "_id": postID }, (err, post) => {
 	   if (err) {
-	     message.content = 'Could not find post';
-	     res.send([message]);
+	     res.send(err);
 	   }
 
-	   post.pinnedBy.push(username);
+	   post.pinnedBy.push(userID);
 	   post.save().then(() => {
-        message.type = 'success';
-        message.content = 'pinned';
-        res.send([message]);
+        res.send({ post });
 	   }).catch(e => {
-        message.type = 'error';
-        message.content = 'server error';
-        res.send([message]);
+        res.send(e);
 	   });
     });
   }

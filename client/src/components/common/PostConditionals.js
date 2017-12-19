@@ -3,17 +3,14 @@ import React from 'react';
 export function GetPinButton(props) {
   
   //if mine - show nothing
-  if(props.username === props.post.postedBy) {
+  if(props.userID === props.post.postedBy) {
     return <div></div>
   }
   
-  props.post.pinnedBy.forEach((pinner, index) => {
-
-    //if pinned - show unpin button
-    if(props.post.pinnedBy[index] === pinner) {
+  //if pinned - show unpin button
+  if(props.post.pinnedBy.indexOf(props.userID) >= 0) {
       return <div className="btn btn-primary" onClick={props.unpinPost}>P-</div>
-    }
-  });
+  }  
 
   //if not pinned - show pin button
   return <div className="btn btn-primary" onClick={props.pinPost}>P+</div>

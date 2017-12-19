@@ -1,4 +1,4 @@
-import { LOAD_POSTS, CREATE_POST, GET_MY_POSTS, GET_USER_POSTS, DELETE_POST } from '../actions/types';
+import { LOAD_POSTS, CREATE_POST, GET_MY_POSTS, GET_USER_POSTS, DELETE_POST, PIN_POST, UNPIN_POST } from '../actions/types';
 
 
 const initialState = {
@@ -41,6 +41,13 @@ export default (state = initialState, action = {}) => {
       return { ...state,
         postsToDisplay: state.postsToDisplay.filter(post => post._id !== action.postID),
         myPosts: state.myPosts.filter(post => post._id !== action.postID)
+      }      
+    case PIN_POST:
+    console.log(action);
+    var index = state.postsToDisplay.findIndex(i => i._id === action.updatedPost._id);
+    state.postsToDisplay[index] = action.updatedPost;
+    
+      return { ...state
       }
     default: return state;
   }

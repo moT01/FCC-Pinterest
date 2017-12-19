@@ -17,6 +17,7 @@ class MainPage extends React.Component {
   }
 
   render(){
+  	console.log(this.props.state);
     return (
       <div className="manyBooksContainer">
         {this.props.postsToDisplay.map((post, index) =>

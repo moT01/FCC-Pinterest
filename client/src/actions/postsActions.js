@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_USER_POSTS, GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST } from './types';
+import { GET_USER_POSTS, GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST, PIN_POST, UNPIN_POST } from './types';
 
 
 // getting other user's posts and dispatching to store
@@ -109,15 +109,22 @@ export function getMyPins(username) {
   }
 }
 
-export function pinPost(postID, username) {
+export function postToPin(updatedPost) {
+  return {
+    type: PIN_POST,
+    updatedPost
+  };
+}
+
+export function pinPost(postID, userID) {
   console.log('pin post action');
-  console.log(postID, username);
+  console.log(postID, userID);
   return dispatch => {
-    return axios.post('/api/posts/pinPost', { postID, username}).then(res => {
+    return axios.patch('/api/posts/pinPost', { postID, userID }).then(res => {
       console.log('pinPost action.then');
-      console.log(res.data[0]);
-      //const message = res.data[0];
-      //dispatch(addFlashMessage(message));
+      const updatedPost = res.data.post;
+      console.log(updatedPost);
+      dispatch(postToPin(updatedPost));
     });
   }
 }
@@ -125,7 +132,7 @@ export function pinPost(postID, username) {
 export function unpinPost(data) {
   console.log('unpin post action');
   return dispatch => {
-    return axios.post('/api/posts/createPost', data).then(res => {
+    return axios.patch('/api/posts/createPost', data).then(res => {
       console.log('unpin action.then');
       console.log(res.data[0]);
       //const message = res.data[0];
