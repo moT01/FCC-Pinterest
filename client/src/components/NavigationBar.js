@@ -51,11 +51,11 @@ class NavigationBar extends React.Component {
     );
 
     return (
-      <nav className="navbarContainer">
+      <nav className="navbarContainer navbar-fixed-top">
         <div className="singleButtonContainer">
           <Link to="/" className="navbarBrand">
             <img src="https://seeklogo.com/images/P/pinterest-badge-logo-82C89A5E42-seeklogo.com.png" alt="Pinterest"/>
-          </Link>          
+          </Link>
         </div>
         {isAuthenticated ? userLinks : guestLinks}
       </nav>
