@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_USER_POSTS, GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST, PIN_POST, UNPIN_POST } from './types';
+import { GET_USER_POSTS, GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST, PIN_POST } from './types';
 
 
 // getting other user's posts and dispatching to store
@@ -80,7 +80,7 @@ export function createPost(data) {
 }
 
 // deleting posts and dispatching to store
-export function postToDelete(post) {
+export function postToUpdateOrDelete(post) {
   return {
     type: DELETE_POST,
     post
@@ -92,7 +92,7 @@ export function deletePost(postID, postOwnerID, authenticatedUserID) {
   return dispatch => {
     return axios.patch('/api/posts/deletePost', { postID, postOwnerID, authenticatedUserID }).then(res => {
       const post = res.data[0];
-      dispatch(postToDelete(post));
+      dispatch(postToUpdateOrDelete(post));
     });
   }
 }
@@ -129,14 +129,13 @@ export function pinPost(postID, userID) {
   }
 }
 
-export function unpinPost(data) {
+export function unpinPost(postID, userID) {
   console.log('unpin post action');
   return dispatch => {
-    return axios.patch('/api/posts/createPost', data).then(res => {
+    return axios.patch('/api/posts/unpinPost', { postID, userID }).then(res => {
       console.log('unpin action.then');
-      console.log(res.data[0]);
-      //const message = res.data[0];
-      //dispatch(addFlashMessage(message));
+      const post = res.data[0];
+      dispatch(postToUpdateOrDelete(post));
     });
   }
 }

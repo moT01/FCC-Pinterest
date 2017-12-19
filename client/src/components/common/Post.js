@@ -42,12 +42,12 @@ class Post extends React.Component {
 
   unpinPost() {
     console.log('unpin clicked in component');
-    /*this.props.unpinPost(this.props.post._id).then(res => {
+    this.props.unpinPost(this.props.post._id, this.props.id).then(res => {
       this.props.addFlashMessage({
-        type: this.props.messages.type,
-        text: this.props.messages.content
+        type: "success",
+        text: "unpinned"
       });
-    });*/
+    });
   }
 
   getUserPosts(username) {

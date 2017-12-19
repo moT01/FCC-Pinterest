@@ -142,18 +142,38 @@ router.patch('/pinPost', (req, res) => {
 
 router.patch('/unpinPost', (req, res) => {
   console.log('/unpinPost');
-  const { postID, username } = req.body;
+  const { postID, userID } = req.body;
+  console.log(postID);
+  console.log(userID);
+  
+  async function unpinPost() {
+	 postsModel.findOne({ "_id": postID }, (err, post) => {
+	   if (err) {
+	     res.send(err);
+	   }
 
-  //so in here i need to remove username from postID:pinnedBy
-  //and return a flash message -> see delete route
+	   post.pinnedBy = post.pinnedBy.filter(id => id !== userID);
 
-  postsModel.find().then(allPosts => {
-  console.log(allPosts);
-    res.send(allPosts)
+      //if we need to remove the post
+      if (post.postedBy === null && post.pinnedBy.length === 0) {
+        postsModel.remove({_id:postID}).then(() => {
+		    res.send([ postID ]);
+		  }).catch(err => {
+	       res.send([err]);
+	     });
+      
+      //if we just need to send back an updated post
+      } else {
+  	     post.save().then(() => {
+          res.send([ post ]);
+	     }).catch(e => {
+          res.send(e);
+  	     });
+  	   }
+    });
+  }
 
-  }).catch(err => {
-    res.send([err])
-  });
+  unpinPost();
 });
 
 export default router;
