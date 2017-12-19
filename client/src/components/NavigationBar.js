@@ -31,11 +31,11 @@ class NavigationBar extends React.Component {
 
     const userLinks = (
       <ul className="navbarButtonContainer">
-        <li className="singleButtonContainer"><Link to="/" className="navbarButton">Browse</Link></li>
-        <li className="singleButtonContainer"><Link to="/createPost" className="navbarButton">Create</Link></li>
-        <li className="singleButtonContainer"><Link to="/myPosts" className="navbarButton" >myPosts</Link></li>
-        <li className="singleButtonContainer"><Link to="/myPins" className="navbarButton" >myPins</Link></li>
-        <li className="singleButtonContainer"><Link to="#" className="navbarButton" onClick={this.logout.bind(this)}>Logout</Link></li>
+        <li className="singleButtonContainer"><Link to="/" className="navbarButton glyphicon glyphicon-eye-open"></Link></li>
+        <li className="singleButtonContainer"><Link to="/createPost" className="navbarButton glyphicon glyphicon-plus"></Link></li>
+        <li className="singleButtonContainer"><Link to="/myPosts" className="navbarButton glyphicon glyphicon-folder-open" ></Link></li>
+        <li className="singleButtonContainer"><Link to="/myPins" className="navbarButton glyphicon glyphicon-pushpin" ></Link></li>
+        <li className="singleButtonContainer"><Link to="#" className="navbarButton glyphicon glyphicon-off" onClick={this.logout.bind(this)}></Link></li>
       </ul>
     );
 
@@ -52,7 +52,11 @@ class NavigationBar extends React.Component {
 
     return (
       <nav className="navbarContainer">
-        <div className="singleButtonContainer"><Link to="/" className="navbarBrand">Pinterest</Link></div>
+        <div className="singleButtonContainer">
+          <Link to="/" className="navbarBrand">
+            <img src="https://seeklogo.com/images/P/pinterest-badge-logo-82C89A5E42-seeklogo.com.png" alt="Pinterest"/>
+          </Link>          
+        </div>
         {isAuthenticated ? userLinks : guestLinks}
       </nav>
     );

@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/authActions';
 import { getAllPosts } from '../../actions/postsActions';
 import Post from '../common/Post';
+var Masonry = require('react-masonry-component');
+
+var masonryOptions = {
+transitionDuration: 0
+};
 
 class MainPage extends React.Component {
   componentWillMount() {
@@ -17,13 +22,23 @@ class MainPage extends React.Component {
   }
 
   render(){
+
   	console.log(this.props.state);
     return (
-      <div className="manyBooksContainer">
+      <Masonry
+        className={'my-gallery-class'} // default ''
+        elementType={'ul'} // default 'div'
+        options={masonryOptions} // default {}
+        disableImagesLoaded={false} // default false
+        updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+      >
+
+
         {this.props.postsToDisplay.map((post, index) =>
           <Post key={index} post={post}/>
         )}
-      </div>
+      
+      </Masonry>
     );
   }
 }

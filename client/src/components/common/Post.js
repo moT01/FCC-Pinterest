@@ -67,14 +67,8 @@ class Post extends React.Component {
             pinPost={this.pinPost.bind(this)}
             unpinPost={this.unpinPost.bind(this)}
           />
-        <Link to={'/userPage/'+ this.props.post.postedBy}>
-
-            <div className="btn btn-primary">
-
-                user
-              </div>
+          <Link to={'/userPage/'+ this.props.post.postedBy} className="glyphicon glyphicon-user">
           </Link>
-
 
           <GetDeleteButton
             post={this.props.post}
