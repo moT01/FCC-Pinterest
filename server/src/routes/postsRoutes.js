@@ -83,13 +83,31 @@ router.patch('/deletePost', (req, res) => {
   
   async function deletePost(){
 
-    if(postOwnerID === authenticatedUserID) {
+    if(postOwnerID === authenticatedUserID) {      
 
-      postsModel.remove({_id:postID}).then(() => {
-		  res.send([postID]);
-		}).catch(err => {
-	     res.send([err]);
-		});
+      postsModel.findOne({ "_id": postID }, (err, post) => {
+	     if (err) {
+	       res.send(err);
+	     }
+        
+        //if someone pinned it - remove the owner from the post
+        if(post.pinnedBy.length > 0) {
+          post.postedBy = null;
+          post.save().then(() => {
+            res.send([ post ]);
+	       }).catch(e => {
+            res.send([e]);
+	       });
+	       
+        //if nobody pinned - remove the whole post
+        } else {
+          postsModel.remove({_id:postID}).then(() => {
+		      res.send([ postID ]);
+		    }).catch(err => {
+	         res.send([err]);
+	    	 });
+        }
+      });
     }
   }
 

@@ -80,10 +80,10 @@ export function createPost(data) {
 }
 
 // deleting posts and dispatching to store
-export function postToDelete(postID) {
+export function postToDelete(post) {
   return {
     type: DELETE_POST,
-    postID
+    post
   };
 }
 
@@ -91,8 +91,8 @@ export function deletePost(postID, postOwnerID, authenticatedUserID) {
   console.log('deletePost action');
   return dispatch => {
     return axios.patch('/api/posts/deletePost', { postID, postOwnerID, authenticatedUserID }).then(res => {
-      const postID = res.data[0];
-      dispatch(postToDelete(postID));
+      const post = res.data[0];
+      dispatch(postToDelete(post));
     });
   }
 }

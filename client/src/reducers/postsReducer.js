@@ -38,13 +38,22 @@ export default (state = initialState, action = {}) => {
       }
     case DELETE_POST:
     console.log(action);
-      return { ...state,
-        postsToDisplay: state.postsToDisplay.filter(post => post._id !== action.postID),
-        myPosts: state.myPosts.filter(post => post._id !== action.postID)
+
+      //if remove owner from post
+      if(action.post._id) {
+        let index = state.postsToDisplay.findIndex(i => i._id === action.post._id);
+        state.postsToDisplay[index] = action.post;
+
+      //else if remove whole post
+      } else {
+        state.postsToDisplay = state.postsToDisplay.filter(post => post._id !== action.post);
+        state.myPosts = state.myPosts.filter(post => post._id !== action.post);
+      }
+      return { ...state
       }      
     case PIN_POST:
     console.log(action);
-    var index = state.postsToDisplay.findIndex(i => i._id === action.updatedPost._id);
+    let index = state.postsToDisplay.findIndex(i => i._id === action.updatedPost._id);
     state.postsToDisplay[index] = action.updatedPost;
     
       return { ...state

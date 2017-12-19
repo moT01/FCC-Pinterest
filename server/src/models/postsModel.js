@@ -4,8 +4,7 @@ var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
   postedBy: {
-    type: String,
-    required: true
+    type: String
   },
   imageURL:{
     type: String,
