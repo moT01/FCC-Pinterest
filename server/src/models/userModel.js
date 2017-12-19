@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
+  username: {
+    type: String,
+    required: true 
+  },
   email: {
         type: String, required: true,
         trim: true, unique: true,
@@ -25,6 +29,7 @@ userSchema.statics.upsertTwitterUser = function(token, tokenSecret, profile, cb)
       // no user was found, lets create a new one
       if (!user) {
         var newUser = new that({
+          username: profile.username,
           email: profile.emails[0].value,
           twitterProvider: {
             id: profile.id,
