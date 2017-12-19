@@ -13,7 +13,6 @@ module.exports = function () {
       includeEmail: true
     },
     function (token, tokenSecret, profile, done) {
-    	console.log(profile);
       userModel.upsertTwitterUser(token, tokenSecret, profile, function(err, user) {
         return done(err, user);
       });

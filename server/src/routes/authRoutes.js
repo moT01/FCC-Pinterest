@@ -10,8 +10,12 @@ require('dotenv').config();
 let router = express.Router();
 
 var createToken = function(auth) {
+	console.log('auth');
+	console.log(auth);
   return jwt.sign({
-    id: auth.id
+    id: auth.id,
+    username: auth.username,
+    profile_image_url: auth.profile_image_url
   }, process.env.JWT_SECRET,
   {
     expiresIn: 60 * 120
@@ -97,28 +101,16 @@ router.route('/twitter')
       if (!req.user) {
         return res.send(401, 'User Not Authenticated');
       }
+      console.log('hi');
+      console.log(req.user);
       // prepare token for API
       req.auth = {
-        id: req.user.id
+        id: req.user.id,
+        username: req.user.username,
+        profile_image_url: req.user.profile_image_url
       };
 
       return next();
 }, generateToken, sendToken);
 
 export default router;
-
-
-// router.get('/login', function(req, res, next) {
-//   console.log('/login');
-//   console.log(req.user);
-//   if (req.user){
-//     const token = jwt.sign({
-//       id: req.user[0]._id,
-//       username: req.user[0].username
-//        }, process.env.JWT_SECRET);
-//        console.log('token created');
-//        res.json({token});
-//    } else {
-//      res.redirect('http://localhost:3000');
-//    }
-// });

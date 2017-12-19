@@ -29,17 +29,3 @@ export function login(res) {
      }
   }
 }
-
-// export function login(){
-//   console.log('login action');
-//   return dispatch => {
-//     return axios.get('/api/auth/login').then(res => {
-//       const token = res.data.token;
-//       if(token) {
-//         localStorage.setItem('jwtToken', token);
-//         setAuthorizationToken(token);
-//         dispatch(setCurrentUser(jwtDecode(token)));
-//        }
-//     });
-//   }
-// }

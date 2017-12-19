@@ -7,6 +7,9 @@ var userSchema = new Schema({
     type: String,
     required: true 
   },
+  profile_image_url: {
+    type: String
+  },
   email: {
         type: String, required: true,
         trim: true, unique: true,
@@ -30,6 +33,7 @@ userSchema.statics.upsertTwitterUser = function(token, tokenSecret, profile, cb)
       if (!user) {
         var newUser = new that({
           username: profile.username,
+          profile_image_url: profile._json.profile_image_url,
           email: profile.emails[0].value,
           twitterProvider: {
             id: profile.id,
