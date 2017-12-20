@@ -40,14 +40,77 @@ visibility: visible;
 visibility: visible;
 }
 
-.glyphicon.deleteButton:hover {
-  color: #717171;
+
+/* pin button in post*/
+.pinButton{
+  z-index: 1;
+  position:absolute;
+  left:1.5em;
+  top:1.5em;
 }
 
-.glyphicon.deleteButton {
+.pinButton::after{
+   z-index: -1;
+   content: '';
+   position: absolute;
+   left: -.5em;
+   top: -.5em;
+   width: 2em;
+   height: 2em;
+   -moz-border-radius: 20px;
+   -webkit-border-radius: 20px;
+   border-radius: 20px;
+   background-color: white;
+}
+
+.glyphicon.pinButton:hover {
+  color: #717171;
+  cursor: pointer;
+}
+
+.glyphicon.pinButton {
   color: #b5b5b5;
 }
+/* pin button in post*/
 
+/* unpin button in post*/
+.unpinButton{
+  z-index: 1;
+  position:absolute;
+  left:1.5em;
+  top:1.5em;
+}
+
+.unpinButton::after{
+   z-index: -1;
+   content: '';
+   position: absolute;
+   left: -.5em;
+   top: -.5em;
+   width: 2em;
+   height: 2em;
+   -moz-border-radius: 20px;
+   -webkit-border-radius: 20px;
+   border-radius: 20px;
+   background-color: #bc081c;
+}
+
+.unpinButton:hover:after{
+   background-color: #aa081a;
+}
+
+.unpinButton:hover {
+  cursor: pointer;
+}
+
+
+
+.glyphicon.unpinButton {
+  color: white;
+}
+/* unpin button in post*/
+
+/* delete button in post*/
 .deleteButton{
   z-index: 1;
   position:absolute;
@@ -68,3 +131,13 @@ visibility: visible;
    border-radius: 20px;
    background-color: white;
 }
+
+.glyphicon.deleteButton:hover {
+  color: #717171;
+  cursor: pointer;
+}
+
+.glyphicon.deleteButton {
+  color: #b5b5b5;
+}
+/* delete button in post*/
