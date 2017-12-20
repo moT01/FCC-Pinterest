@@ -108,12 +108,10 @@ export function loadMyPins(myPins) {
 
 export function getMyPins(userID) {
   console.log('getMyPins action');
-  console.log(userID);
   return dispatch => {
     return axios.patch('/api/posts/getPins', { userID }).then(res => {
       console.log('getMyPins action.then');
       const myPins = res.data.myPins;
-      console.log(myPins);
       dispatch(loadMyPins(myPins));
     });
   }

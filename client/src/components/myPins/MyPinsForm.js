@@ -6,16 +6,12 @@ import Post from '../common/Post';
 
 class MyPinsForm extends React.Component {
   componentWillMount() {
-    console.log("mypins " + this.props.myPins);
     if(this.props.id && this.props.myPins.length === 0) {
       this.props.getMyPins(this.props.id);
-    } else {
-
     }
   }
 
   render() {
-    console.log(this.props.myPins);
     return (
       <div className="manyBooksContainer">
         {this.props.myPins.map((post, index) =>

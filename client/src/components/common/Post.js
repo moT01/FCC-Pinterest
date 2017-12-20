@@ -85,7 +85,6 @@ class Post extends React.Component {
 function mapStateToProps(state) {
   return {
     state: state,
-    messages: state.postsReducer.message,
     id: state.auth.user.id,
     username: state.auth.user.username
   }

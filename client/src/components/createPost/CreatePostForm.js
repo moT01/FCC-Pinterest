@@ -4,7 +4,6 @@ import { createPost } from '../../actions/postsActions';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../../actions/flashMessages.js';
 import checkImage from 'image-check';
-//import PropTypes from 'prop-types'
 
 class CreatePostForm extends React.Component {
   constructor(props){
@@ -89,15 +88,10 @@ class CreatePostForm extends React.Component {
   }
 }
 
-/*CreatePostForm.propTypes = {
-  createPost: PropTypes.func.isRequired
-}*/
-
 function mapStateToProps(state) {
     return {
       id: state.auth.user.id,
       username: state.auth.user.username,
-      message: state.postsReducer.message
     }
 }
 
