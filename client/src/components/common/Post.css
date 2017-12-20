@@ -25,7 +25,7 @@
 visibility: hidden;
 position:absolute;
 top:0;
-background:rgba(0, 0, 0, 0.1);
+background:rgba(0, 0, 0, 0.2);
 border-radius: 10px;
 width:100%;
 height:100%;
@@ -36,12 +36,35 @@ height:100%;
 visibility: visible;
 }
 
-
-
-.glyphicon:hover {
-  color: blue;
+.postContainer:active >  .postInfo{
+visibility: visible;
 }
 
-.black{
-  color: black;
+.glyphicon.deleteButton:hover {
+  color: #717171;
+}
+
+.glyphicon.deleteButton {
+  color: #b5b5b5;
+}
+
+.deleteButton{
+  z-index: 1;
+  position:absolute;
+  right:1.5em;
+  top:1.5em;
+}
+
+.deleteButton::after{
+   z-index: -1;
+   content: '';
+   position: absolute;
+   left: -.5em;
+   top: -.5em;
+   width: 2em;
+   height: 2em;
+   -moz-border-radius: 20px;
+   -webkit-border-radius: 20px;
+   border-radius: 20px;
+   background-color: white;
 }

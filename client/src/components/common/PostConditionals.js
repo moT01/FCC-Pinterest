@@ -27,7 +27,7 @@ export function GetDeleteButton(props) {
   //if my post
   if(props.userID === props.post.postedBy) {
     return <div onClick={() => props.deletePost(props.post._id, props.post.postedBy)}
-         className="glyphicon glyphicon-remove">
+         className="glyphicon glyphicon-remove deleteButton">
       </div>
   }
 

@@ -55,6 +55,7 @@ class Post extends React.Component {
   }
 
   render() {
+    console.log(this.props.post)
     return (
       <div className="postContainer">
         <img src={this.props.post.imageURL} className="bookImage" alt=":)"/>
@@ -66,7 +67,7 @@ class Post extends React.Component {
             pinPost={this.pinPost.bind(this)}
             unpinPost={this.unpinPost.bind(this)}
           />
-          <Link to={'/userPage/'+ this.props.post.postedBy} className="glyphicon glyphicon-user">
+        <Link to={'/userPage/'+ this.props.post.postedBy} className="glyphicon glyphicon-user userInfo">
            {this.props.post.ownerUsername}
           </Link>
 
