@@ -69,6 +69,7 @@ export function AddNewPost(post) {
 
 export function createPost(data) {
   console.log('createPost action');
+  console.log(data);
   return dispatch => {
     return axios.post('/api/posts/createPost', data).then(res => {
       console.log(res.data.post);

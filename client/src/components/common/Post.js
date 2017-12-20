@@ -68,6 +68,7 @@ class Post extends React.Component {
             unpinPost={this.unpinPost.bind(this)}
           />
           <Link to={'/userPage/'+ this.props.post.postedBy} className="glyphicon glyphicon-user">
+           {this.props.post.ownerUsername}
           </Link>
 
           <GetDeleteButton
@@ -85,7 +86,8 @@ function mapStateToProps(state) {
   return {
     state: state,
     messages: state.postsReducer.message,
-    id: state.auth.user.id
+    id: state.auth.user.id,
+    username: state.auth.user.username
   }
 }
 

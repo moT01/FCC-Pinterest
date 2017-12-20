@@ -6,6 +6,9 @@ var postSchema = new Schema({
   postedBy: {
     type: String
   },
+  ownerUsername: {
+    type: String  
+  },
   imageURL:{
     type: String,
     default: "",
