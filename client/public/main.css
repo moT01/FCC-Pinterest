@@ -6,15 +6,3 @@
 body {
   padding: 80px 0;
 }
-
-ul.nav li a, ul.nav li a:visited {
-    color: #b5b5b5 !important;
-}
-
-ul.nav li a:hover, ul.nav li a:active {
-    color: #b5b5b5 !important;
-}
-
-ul.nav li.active a {
-    color: #b5b5b5 !important;
-}
