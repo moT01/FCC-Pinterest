@@ -35,12 +35,14 @@ router.patch('/getUserPosts', (req, res) => {
 
 router.patch('/getPins', (req, res) => {
   console.log('/getPins');
-  const { username } = req.body;
+  const { userID } = req.body;
 
   //not written yet
   postsModel.find().then(allPosts => {
-  console.log(allPosts);
-    res.send(allPosts)
+    let myPins = allPosts.filter(post => post.pinnedBy.indexOf(userID) >= 0);
+    console.log('myPins');
+    console.log(myPins);
+    res.send({myPins})
 
   }).catch(err => {
     res.send([err])

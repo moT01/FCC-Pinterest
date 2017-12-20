@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_USER_POSTS, GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST, PIN_POST } from './types';
+import { GET_USER_POSTS, GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST, PIN_POST, MY_PINS } from './types';
 
 
 // getting other user's posts and dispatching to store
@@ -98,14 +98,23 @@ export function deletePost(postID, postOwnerID, authenticatedUserID) {
   }
 }
 
-export function getMyPins(username) {
+// deleting posts and dispatching to store
+export function loadMyPins(myPins) {
+  return {
+    type: MY_PINS,
+    myPins
+  };
+}
+
+export function getMyPins(userID) {
   console.log('getMyPins action');
-  console.log(username);
+  console.log(userID);
   return dispatch => {
-    return axios.patch('/api/posts/getPins', { username }).then(res => {
+    return axios.patch('/api/posts/getPins', { userID }).then(res => {
       console.log('getMyPins action.then');
-      const myPins = res.data;
-      dispatch(loadAllPosts(myPins));
+      const myPins = res.data.myPins;
+      console.log(myPins);
+      dispatch(loadMyPins(myPins));
     });
   }
 }
