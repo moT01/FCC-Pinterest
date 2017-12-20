@@ -3,8 +3,9 @@ import React from 'react';
 export function GetPinButton(props) {
 
   //if mine - show nothing
+  //for editing purposes i changed it, it should return an empty div
   if(props.userID === props.post.postedBy) {
-    return <div></div>
+    return <div className="glyphicon glyphicon-pushpin black" onClick={props.pinPost}/>
   }
 
   //if pinned - show unpin button

@@ -1,7 +1,6 @@
 import React from 'react';
 import { deletePost, pinPost, unpinPost, getMyPosts } from '../../actions/postsActions';
 import { GetPinButton, GetDeleteButton } from './PostConditionals';
-//import  UserPostsPage  from '../userPosts/UserPostsPage';
 import { addFlashMessage } from '../../actions/flashMessages';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -57,10 +56,10 @@ class Post extends React.Component {
 
   render() {
     return (
-      <div className="singleBookContainer">
+      <div className="postContainer">
         <img src={this.props.post.imageURL} className="bookImage" alt=":)"/>
 
-        <div className="bookButtonContainer">
+        <div className="postInfo">
           <GetPinButton
             post={this.props.post}
             userID={this.props.id}
