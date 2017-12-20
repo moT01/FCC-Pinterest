@@ -1,4 +1,4 @@
-import { LOAD_POSTS, CREATE_POST, GET_MY_POSTS, GET_USER_POSTS, DELETE_POST, PIN_POST, MY_PINS } from '../actions/types';
+import { LOAD_POSTS, CREATE_POST, GET_MY_POSTS, GET_USER_POSTS, DELETE_POST, PIN_POST, UNPIN_POST, MY_PINS } from '../actions/types';
 
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
 };
 
 export default (state = initialState, action = {}) => {
+  let index;
   switch(action.type) {
     case LOAD_POSTS:
       console.log(action);
@@ -50,16 +51,25 @@ export default (state = initialState, action = {}) => {
         state.postsToDisplay = state.postsToDisplay.filter(post => post._id !== action.post);
         state.myPosts = state.myPosts.filter(post => post._id !== action.post);
       }
-      return { ...state
-      }      
+      return { ...state }
     case PIN_POST:
       console.log(action);
-      let index = state.postsToDisplay.findIndex(i => i._id === action.updatedPost._id);
+      index = state.postsToDisplay.findIndex(i => i._id === action.updatedPost._id);
       state.postsToDisplay[index] = action.updatedPost;
     
-      return { ...state
-      }
+      return { ...state }
       
+    case UNPIN_POST:
+      console.log(action);
+      //remove post from myPins
+      state.myPins = state.myPins.filter(post => post._id !== action.post._id);
+        
+      //remove owner from post in postsToDisplay
+      index = state.postsToDisplay.findIndex(i => i._id === action.post._id);
+      state.postsToDisplay[index] = action.post;
+
+      return { ...state }
+
     case MY_PINS:
       console.log(action);
       return { ...state,

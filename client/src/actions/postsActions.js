@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_USER_POSTS, GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST, PIN_POST, MY_PINS } from './types';
+import { GET_USER_POSTS, GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST, PIN_POST, UNPIN_POST, MY_PINS } from './types';
 
 
 // getting other user's posts and dispatching to store
@@ -81,7 +81,7 @@ export function createPost(data) {
 }
 
 // deleting posts and dispatching to store
-export function postToUpdateOrDelete(post) {
+export function postToDelete(post) {
   return {
     type: DELETE_POST,
     post
@@ -93,7 +93,7 @@ export function deletePost(postID, postOwnerID, authenticatedUserID) {
   return dispatch => {
     return axios.patch('/api/posts/deletePost', { postID, postOwnerID, authenticatedUserID }).then(res => {
       const post = res.data[0];
-      dispatch(postToUpdateOrDelete(post));
+      dispatch(postToDelete(post));
     });
   }
 }
@@ -137,13 +137,20 @@ export function pinPost(postID, userID) {
   }
 }
 
+export function postToUnpin(post) {
+  return {
+    type: UNPIN_POST,
+    post
+  };
+}
+
 export function unpinPost(postID, userID) {
   console.log('unpin post action');
   return dispatch => {
     return axios.patch('/api/posts/unpinPost', { postID, userID }).then(res => {
       console.log('unpin action.then');
       const post = res.data[0];
-      dispatch(postToUpdateOrDelete(post));
+      dispatch(postToUnpin(post));
     });
   }
 }
