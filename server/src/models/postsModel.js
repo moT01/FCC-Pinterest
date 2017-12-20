@@ -9,6 +9,9 @@ var postSchema = new Schema({
   ownerUsername: {
     type: String  
   },
+  profileImageUrl: {
+    type: String
+  },
   imageURL:{
     type: String,
     default: "",

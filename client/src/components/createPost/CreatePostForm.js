@@ -13,6 +13,7 @@ class CreatePostForm extends React.Component {
       defaultImage: 'https://goo.gl/yNUY3G',
       userID: this.props.id,
       username: this.props.username,
+      profileImageUrl: this.props.profileImageUrl,
       isLoading: false,
       sendable:false
     };
@@ -92,6 +93,7 @@ function mapStateToProps(state) {
     return {
       id: state.auth.user.id,
       username: state.auth.user.username,
+      profileImageUrl: state.auth.user.profile_image_url
     }
 }
 

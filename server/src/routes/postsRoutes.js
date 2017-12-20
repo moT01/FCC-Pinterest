@@ -48,13 +48,14 @@ router.patch('/getPins', (req, res) => {
 
 
 router.post('/createPost', (req, res) => {
-  const {imageURL, userID, username} = req.body;
+  const {imageURL, userID, username, profileImageUrl} = req.body;
   let message = {'type': 'error', 'content': 'Could not add image'};
 
   async function createPost() {
     var newPost = new postsModel({
       postedBy: userID,
       ownerUsername: username,
+      profileImageUrl: profileImageUrl,
       imageURL: imageURL
     });
 
