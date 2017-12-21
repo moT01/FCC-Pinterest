@@ -16,7 +16,7 @@
 }
 
 .postInfo {
-visibility: hidden;
+visibility: visible;
 position:absolute;
 top:0;
 background:rgba(0, 0, 0, 0.2);
@@ -25,86 +25,80 @@ width:100%;
 height:100%;
 }
 
-
-
 .postContainer:hover >  .postInfo{
 visibility: visible;
 }
 
-.postContainer:active >  .postInfo{
-visibility: visible;
-}
 
 .hello {
   background: blue;
 }
+
 /* pin button in post*/
 .pinButton{
   z-index: 1;
   position:absolute;
-  left:1.5em;
-  top:1.5em;
+  left:1em;
+  top:1em;
+  text-align: center;
+  width:auto;
+  background-color: white;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  height: 2em;
+  vertical-align:middle;
+  padding-top: .25em;
+  min-width: 2em;
+  color:#b5b5b5;
 }
-
-.pinButton::after{
-   z-index: -1;
-   content: '';
-   position: absolute;
-   left: -.5em;
-   top: -.5em;
-   width: 2em;
-   height: 2em;
-   -moz-border-radius: 20px;
-   -webkit-border-radius: 20px;
-   border-radius: 20px;
-   background-color: white;
-}
-
-.glyphicon.pinButton:hover {
-  color: #717171;
+.pinButton:hover{
+  background-color: #bc081c;
+  color: white;
   cursor: pointer;
 }
-
-.glyphicon.pinButton {
-  color: #b5b5b5;
+.pinButton > span{
+  margin-left: .5em;
 }
+.pinButton > text{
+  size:.25em;
+  margin-right: .5em;
+}
+
+
 /* pin button in post*/
 
 /* unpin button in post*/
 .unpinButton{
   z-index: 1;
   position:absolute;
-  left:1.5em;
-  top:1.5em;
-}
-
-.unpinButton::after{
-   z-index: -1;
-   content: '';
-   position: absolute;
-   left: -.5em;
-   top: -.5em;
-   width: 2em;
-   height: 2em;
-   -moz-border-radius: 20px;
-   -webkit-border-radius: 20px;
-   border-radius: 20px;
-   background-color: #bc081c;
-}
-
-.unpinButton:hover:after{
-   background-color: #aa081a;
-}
-
-.unpinButton:hover {
-  cursor: pointer;
-}
-
-
-
-.glyphicon.unpinButton {
+  left:1em;
+  top:1em;
+  text-align: center;
+  width:auto;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  height: 2em;
+  vertical-align:middle;
+  padding-top: .25em;
+  min-width: 2em;
+  background-color: #bc081c;
   color: white;
 }
+.unpinButton:hover{
+  background-color: white;
+  color:#b5b5b5;
+  cursor: pointer;
+}
+.unpinButton > span{
+  margin-left: .5em;
+}
+.unpinButton > text{
+  size:.25em;
+  margin-right: .5em;
+}
+
 /* unpin button in post*/
 
 /* delete button in post*/
