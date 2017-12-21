@@ -1,9 +1,8 @@
 import React from 'react';
 import { deletePost, pinPost, unpinPost, getMyPosts } from '../../actions/postsActions';
-import { GetPinButton, GetDeleteButton } from './PostConditionals';
+import { PostOverlay } from './PostOverlay';
 import { addFlashMessage } from '../../actions/flashMessages';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import './Post.css';
 
 class Post extends React.Component {
@@ -35,10 +34,6 @@ class Post extends React.Component {
     });
   }
 
-  goToUserPage(){
-
-  }
-
   unpinPost() {
     console.log('unpin clicked in component');
     this.props.unpinPost(this.props.post._id, this.props.id).then(res => {
@@ -50,33 +45,19 @@ class Post extends React.Component {
   }
 
   getUserPosts(username) {
-    //console.log(this.props.post.postedBy);
     this.props.getUserPosts(username);
   }
 
   render() {
-    console.log(this.props.post)
     return (
       <div className="postContainer">
-        <img src={this.props.post.imageURL} className="bookImage" alt=":)"/>
-
+        <img src={this.props.post.imageURL} className="bookImage" alt=""/>
         <div className="postInfo">
-          <GetPinButton
+          <PostOverlay
             post={this.props.post}
             userID={this.props.id}
-            pinPost={this.pinPost.bind(this)}
-            unpinPost={this.unpinPost.bind(this)}
-          />
-        <Link to={'/userPage/'+ this.props.post.postedBy} className="">
-          <img src={this.props.post.profileImageUrl} className="userPicture"/>
-        </Link>
-        <Link to={'/userPage/'+ this.props.post.postedBy} className="userName">
-          {this.props.post.ownerUsername}
-        </Link>
-
-          <GetDeleteButton
-            post={this.props.post}
-            userID={this.props.id}
+            pinPost={this.pinPost}
+            unpinPost={this.unpinPost}
             deletePost={this.deletePost}
           />
         </div>

@@ -1,12 +1,8 @@
-.manyBooksContainer {
-
-}
 
 .postContainer {
   min-width: 170px;
   max-width: 170px;
   margin: 10px 16px;
-
   border-radius: 10px;
   background-color: #ccc;
 }
@@ -19,8 +15,6 @@
 
 }
 
-
-
 .postInfo {
 visibility: hidden;
 position:absolute;
@@ -32,6 +26,7 @@ height:100%;
 }
 
 
+
 .postContainer:hover >  .postInfo{
 visibility: visible;
 }
@@ -40,7 +35,9 @@ visibility: visible;
 visibility: visible;
 }
 
-
+.hello {
+  background: blue;
+}
 /* pin button in post*/
 .pinButton{
   z-index: 1;
