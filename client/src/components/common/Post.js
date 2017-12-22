@@ -51,7 +51,7 @@ class Post extends React.Component {
   render() {
     return (
       <div className="postContainer">
-        <img src={this.props.post.imageURL} className="bookImage" alt=""/>
+        <img src={this.props.post.imageURL} className="postImage" alt=""/>
         <div className="postInfo">
           <PostOverlay
             post={this.props.post}

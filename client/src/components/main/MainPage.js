@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/authActions';
 import { getAllPosts } from '../../actions/postsActions';
 import Post from '../common/Post';
-var Masonry = require('react-masonry-component');
+import StackGrid from "react-stack-grid";
 
-var masonryOptions = {
-transitionDuration: 0
-};
 
 class MainPage extends React.Component {
   componentWillMount() {
@@ -25,20 +22,11 @@ class MainPage extends React.Component {
 
   	console.log(this.props.state);
     return (
-      <Masonry
-        className={'my-gallery-class'} // default ''
-        elementType={'ul'} // default 'div'
-        options={masonryOptions} // default {}
-        disableImagesLoaded={false} // default false
-        updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-      >
-
-
+      <StackGrid columnWidth={150}>
         {this.props.postsToDisplay.map((post, index) =>
           <Post key={index} post={post}/>
         )}
-      
-      </Masonry>
+     </StackGrid>
     );
   }
 }
