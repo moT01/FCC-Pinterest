@@ -3,6 +3,7 @@ import { getMyPins } from '../../actions/postsActions';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../../actions/flashMessages.js';
 import Post from '../common/Post';
+import StackGrid from "react-stack-grid";
 
 class MyPinsForm extends React.Component {
   componentWillMount() {
@@ -13,11 +14,11 @@ class MyPinsForm extends React.Component {
 
   render() {
     return (
-      <div className="manyBooksContainer">
+      <StackGrid columnWidth={250}>
         {this.props.myPins.map((post, index) =>
           <Post key={index} post={post}/>
         )}
-      </div>
+      </StackGrid>
     );
   }
 }
