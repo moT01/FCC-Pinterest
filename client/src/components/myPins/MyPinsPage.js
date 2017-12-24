@@ -1,16 +1,30 @@
 import React from 'react';
-import MyPinsForm from './MyPinsForm';
+import {getMyPins} from '../../actions/postsActions';
+import {connect} from 'react-redux';
+import {addFlashMessage} from '../../actions/flashMessages.js';
+import Post from '../common/Post';
+import StackGrid from "react-stack-grid";
+
 
 class MyPinsPage extends React.Component {
+  componentWillMount() {
+    if (this.props.id && this.props.myPins.length === 0) {
+      this.props.getMyPins(this.props.id);
+    }
+  }
   render() {
-    return(
-      <div className="row">
-        <div className="col-md-4 col-md-offset-4">
-          <MyPinsForm />
-        </div>
-      </div>
+    return (
+      <StackGrid columnWidth={150}>
+        {this.props.myPins.map((post, index) =>
+          <Post key={index} post={post}/>
+        )}
+      </StackGrid>
     );
   }
 }
 
-export default MyPinsPage;
+function mapStateToProps(state) {
+  return {id: state.auth.user.id, myPins: state.postsReducer.myPins}
+}
+
+export default connect(mapStateToProps, {addFlashMessage, getMyPins})(MyPinsPage);

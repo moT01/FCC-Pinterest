@@ -10,12 +10,7 @@ class MainPage extends React.Component {
   componentWillMount() {
     if(this.props.postsToDisplay.length === 0) {
       this.props.getAllPosts();
-    } else {
-
     }
-  }
-
-  componentDidMount() {
   }
 
   render(){
