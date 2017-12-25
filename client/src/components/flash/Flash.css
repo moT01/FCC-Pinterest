@@ -2,7 +2,7 @@
   min-width: 80%;
   position: fixed;
   top: 100px;
-  z-index: 1;
+  z-index: 1000;
 }
 
 .alert {

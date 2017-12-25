@@ -1,69 +1,69 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export function PostOverlay(props) {
+  console.log("id:"+props.userID);
+  console.log("pid " + props.post.postedBy)
 
-  //when user is logged out
-  if(!props.userID) {
-     return(
+  if (!props.userID) { //when user is logged out
+    return (
       <div>
-        <Link to={'/userPage/'+ props.post.postedBy}>
+        <Link to={'/userPage/' + props.post.postedBy}>
           <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
         </Link>
-        <Link to={'/userPage/'+ props.post.postedBy} className="userName">
+        <Link to={'/userPage/' + props.post.postedBy} className="userName">
           {props.post.ownerUsername}
         </Link>
-      </div>);
-  }
-
-  //when user is logged in and owns the post
-  else if(props.userID === props.post.postedBy) {
-     return(
+      </div>
+    );
+  } else if (props.userID === props.post.postedBy) { //when user is logged in and owns the post
+    return (
       <div>
-        <div onClick={() => props.deletePost(props.post._id, props.post.postedBy)}
-             className="glyphicon glyphicon-remove deleteButton"/>
-        <Link to={'/userPage/'+ props.post.postedBy}>
+        <div onClick={() => props.deletePost(props.post._id, props.post.postedBy)} className="glyphicon glyphicon-remove deleteButton"/>
+        <Link to={'/userPage/' + props.post.postedBy}>
           <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
         </Link>
-        <Link to={'/userPage/'+ props.post.postedBy} className="userName">
+        <Link to={'/userPage/' + props.post.postedBy} className="userName">
           {props.post.ownerUsername}
         </Link>
-      </div>);
-  }
-
-  //when user is logged in and has  pinned the post
-  else if(props.post.pinnedBy.indexOf(props.userID) >= 0){
+      </div>
+    );
+  } else if (props.post.pinnedBy.indexOf(props.userID) >= 0) { //when user is logged in and has  pinned the post
+    console.log("pinned");
     const pinCount = props.post.pinnedBy.length;
-    return(
-     <div>
-       <div className=" pinButton" onClick={props.unpinPost}>
-         <span className = "glyphicon glyphicon-pushpin"/>
-         <text> {pinCount} </text>
-       </div>
-       <Link to={'/userPage/'+ props.post.postedBy}>
-         <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
-       </Link>
-       <Link to={'/userPage/'+ props.post.postedBy} className="userName">
-         {props.post.ownerUsername}
-       </Link>
-     </div>);
-  }
-
-  //when user is logged in and has not pinned the post
-  else{
+    return (
+      <div>
+        <div className=" pinButton" onClick={props.unpinPost}>
+          <span className="glyphicon glyphicon-pushpin"/>
+          <text>
+            {pinCount}
+          </text>
+        </div>
+        <Link to={'/userPage/' + props.post.postedBy}>
+          <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
+        </Link>
+        <Link to={'/userPage/' + props.post.postedBy} className="userName">
+          {props.post.ownerUsername}
+        </Link>
+      </div>
+    );
+  } else { //when user is logged in and has not pinned the post
     const pinCount = props.post.pinnedBy.length;
-    return(
-     <div>
-       <div className=" pinButton" onClick={props.pinPost}>
-         <span className = "glyphicon glyphicon-pushpin"/>
-         <text> {pinCount} </text>
-       </div>
-       <Link to={'/userPage/'+ props.post.postedBy}>
-         <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
-       </Link>
-       <Link to={'/userPage/'+ props.post.postedBy} className="userName">
-         {props.post.ownerUsername}
-       </Link>
-     </div>);
+    return (
+      <div>
+        <div className=" pinButton" onClick={props.pinPost}>
+          <span className="glyphicon glyphicon-pushpin"/>
+          <text>
+            {pinCount}
+          </text>
+        </div>
+        <Link to={'/userPage/' + props.post.postedBy}>
+          <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
+        </Link>
+        <Link to={'/userPage/' + props.post.postedBy} className="userName">
+          {props.post.ownerUsername}
+        </Link>
+      </div>
+    );
   }
 }

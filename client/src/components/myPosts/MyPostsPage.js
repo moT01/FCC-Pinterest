@@ -1,16 +1,31 @@
 import React from 'react';
-import MyPostsForm from './MyPostsForm';
+import { deletePost, getMyPosts } from '../../actions/postsActions';
+import { connect } from 'react-redux';
+import { addFlashMessage } from '../../actions/flashMessages.js';
+import Post from '../common/Post';
+import StackGrid from "react-stack-grid";
 
 class MyPostsPage extends React.Component {
+  componentWillMount() {
+  if (this.props.id && this.props.myPosts.length === 0) {
+    this.props.getMyPosts(this.props.id);
+  }}
   render() {
     return(
-      <div className="row">
-        <div className="col-md-4 col-md-offset-4">
-          <MyPostsForm />
-        </div>
-      </div>
+      <StackGrid columnWidth={250}>
+        {this.props.myPosts.map((post, index) =>
+          <Post key={index} post={post}/>
+        )}
+      </StackGrid>
     );
   }
 }
 
-export default MyPostsPage;
+function mapStateToProps(state) {
+    return {
+      id: state.auth.user.id,
+      myPosts: state.postsReducer.myPosts,
+    }
+}
+
+export default connect(mapStateToProps, {addFlashMessage, getMyPosts, deletePost})(MyPostsPage);
