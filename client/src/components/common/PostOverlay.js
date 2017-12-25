@@ -18,10 +18,10 @@ export function PostOverlay(props) {
     return (
       <div>
         <div onClick={() => props.deletePost(props.post._id, props.post.postedBy)} className="glyphicon glyphicon-remove deleteButton"/>
-        <Link to={'/userPage/' + props.post.postedBy}>
+        <Link to={'/myPosts'}>{/* send user to myposts instead of userPage*/}
           <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
         </Link>
-        <Link to={'/userPage/' + props.post.postedBy} className="userName">
+        <Link to={'/myPosts'} className="userName">
           {props.post.ownerUsername}
         </Link>
       </div>
