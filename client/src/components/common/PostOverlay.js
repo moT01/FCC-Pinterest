@@ -2,8 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 export function PostOverlay(props) {
-  console.log("id:"+props.userID);
-  console.log("pid " + props.post.postedBy)
 
   if (!props.userID) { //when user is logged out
     return (
@@ -33,7 +31,7 @@ export function PostOverlay(props) {
     const pinCount = props.post.pinnedBy.length;
     return (
       <div>
-        <div className=" pinButton" onClick={props.unpinPost}>
+        <div className=" unpinButton" onClick={props.unpinPost}>
           <span className="glyphicon glyphicon-pushpin"/>
           <text>
             {pinCount}

@@ -47,8 +47,7 @@ visibility: visible;
   color:#b5b5b5;
 }
 .pinButton:hover{
-  background-color: #bc081c;
-  color: white;
+  color: #717171;;
   cursor: pointer;
 }
 .pinButton > span{
@@ -81,8 +80,7 @@ visibility: visible;
   color: white;
 }
 .unpinButton:hover{
-  background-color: white;
-  color:#b5b5b5;
+  background-color: #a30618;
   cursor: pointer;
 }
 .unpinButton > span{
@@ -158,8 +156,3 @@ visibility: visible;
 
 
 /* media queries mobile first */
-
-
-  /*.postContainer {
-    width: 14em;
-    margin: 1em 1.1em;}*/
