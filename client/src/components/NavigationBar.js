@@ -42,7 +42,7 @@ class NavigationBar extends React.Component {
     // the twitter component uses the 'react-twitter-auth' to connect to twitter through the backend
     const guestLinks = (
       <ul className="navbarButtonContainer">
-        <li className="singleButtonContainer">
+        <li className="singleButtonContainer twitterLogin">
           <TwitterLogin loginUrl="http://localhost:8080/api/auth/twitter"
                       onFailure={this.onFailed} onSuccess={this.onSuccess}
                       requestTokenUrl="http://localhost:8080/api/auth/twitter/reverse"/>

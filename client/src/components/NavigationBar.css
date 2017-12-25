@@ -44,15 +44,17 @@ a.navbarBrand{
 .navbarButton, .navbarBrand {
   padding: 20px;
   display: inline-block;
+  color:#858585;
 }
 
 .navbarButton:hover, .navbarBrand:hover {
   text-decoration: none;
-  background-color: #ccc;
+  color:#444444;
 }
 
 .navbarButton:focus, .navbarBrand:focus {
   text-decoration: none;
+  color:#444444;
 }
 
 @media screen and (max-width: 600px) {
@@ -65,8 +67,7 @@ a.navbarBrand{
 	}
 
 	.navbarButton {
-	  padding: 3px;
-	  transform: rotate(-45deg);
+	  padding: 1em;
 	}
 
    .navbarButton:hover, .navbarBrand:hover {
@@ -74,6 +75,9 @@ a.navbarBrand{
 	}
 }
 
+.twitterLogin {
+  margin-right: 1.5em;
+}
 @media screen and (max-width: 350px) {
 	.navbarContainer {
       justify-content: center;
