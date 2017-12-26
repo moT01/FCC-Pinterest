@@ -20,12 +20,10 @@ export default (state = initialState, action = {}) => {
       console.log(action);
       return { ...state,
         postsToDisplay: [
-          ...state.postsToDisplay,
-          action.post
+          ...state.postsToDisplay.push(action.post)
         ],
         myPosts: [
-          ...state.myPosts,
-          action.post
+          ...state.myPosts.push(action.post)
         ]
       }
     case GET_MY_POSTS:
