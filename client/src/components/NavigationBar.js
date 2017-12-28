@@ -28,6 +28,11 @@ class NavigationBar extends React.Component {
 
   render(){
     const { isAuthenticated } = this.props.auth;
+    const loginUrl = process.env.NODE_ENV === "production"?
+      "/api/auth/twitter":"http://localhost:8080/api/auth/twitter";
+
+    const requestTokenUrl= process.env.NODE_ENV === "production"?
+      "/api/auth/twitter/reverse":"http://localhost:8080/api/auth/twitter/reverse";
 
     const userLinks = (
       <ul className="navbarButtonContainer">
@@ -43,9 +48,9 @@ class NavigationBar extends React.Component {
     const guestLinks = (
       <ul className="navbarButtonContainer">
         <li className="singleButtonContainer twitterLogin">
-          <TwitterLogin loginUrl="http://localhost:8080/api/auth/twitter"
+          <TwitterLogin loginUrl={loginUrl}
                       onFailure={this.onFailed} onSuccess={this.onSuccess}
-                      requestTokenUrl="http://localhost:8080/api/auth/twitter/reverse"/>
+                      requestTokenUrl={requestTokenUrl}/>
           </li>
       </ul>
     );

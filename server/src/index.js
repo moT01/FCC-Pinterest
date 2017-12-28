@@ -21,6 +21,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/pinterest1', { 
 
 let app = express();
 
+app.use(express.static(path.join(__dirname, '../build')));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
@@ -37,6 +39,3 @@ app.use('/api/auth', authRoutes);
 app.use('/api/posts', postsRoutes);
 
 app.listen(port, () => console.log('Running on port: ' + port));
-
-
-//app.use(express.static(path.join(__dirname, 'public')));

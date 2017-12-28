@@ -3,6 +3,7 @@ import axios from 'axios';
 import { without } from 'lodash';
 import postsModel from '../models/postsModel';
 import isImageURL from 'is-image-url';
+import regeneratorRuntime from "regenerator-runtime";
 
 let fetch = require('node-fetch');
 let router = express.Router();
@@ -78,19 +79,19 @@ router.post('/createPost', (req, res) => {
 
 
 router.patch('/deletePost', (req, res) => {
-  console.log('/delete'); 
+  console.log('/delete');
   const { postID, postOwnerID, authenticatedUserID } = req.body;
   console.log(postID);
-  
+
   async function deletePost(){
 
-    if(postOwnerID === authenticatedUserID) {      
+    if(postOwnerID === authenticatedUserID) {
 
       postsModel.findOne({ "_id": postID }, (err, post) => {
 	     if (err) {
 	       res.send(err);
 	     }
-        
+
         //if someone pinned it - remove the owner from the post
         if(post.pinnedBy.length > 0) {
           post.postedBy = null;
@@ -99,7 +100,7 @@ router.patch('/deletePost', (req, res) => {
 	       }).catch(e => {
             res.send([e]);
 	       });
-	       
+
         //if nobody pinned - remove the whole post
         } else {
           postsModel.remove({_id:postID}).then(() => {
@@ -146,7 +147,7 @@ router.patch('/unpinPost', (req, res) => {
   const { postID, userID } = req.body;
   console.log(postID);
   console.log(userID);
-  
+
   async function unpinPost() {
 	 postsModel.findOne({ "_id": postID }, (err, post) => {
 	   if (err) {
@@ -162,7 +163,7 @@ router.patch('/unpinPost', (req, res) => {
 		  }).catch(err => {
 	       res.send([err]);
 	     });
-      
+
       //if we just need to send back an updated post
       } else {
   	     post.save().then(() => {

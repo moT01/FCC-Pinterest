@@ -4,6 +4,7 @@ import passport from 'passport';
 import expressJwt from 'express-jwt';
 import request from 'request';
 require('dotenv').config();
+import regeneratorRuntime from "regenerator-runtime";
 
 
 
@@ -51,6 +52,7 @@ var authenticate = expressJwt({
 
 router.route('/twitter/reverse')
   .post(function(req, res) {
+		console.log("req1:" + req);
     request.post({
       url: 'https://api.twitter.com/oauth/request_token',
       oauth: {
@@ -64,6 +66,7 @@ router.route('/twitter/reverse')
       }
 
       var jsonStr = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
+			console.log("res1:" + JSON.parse(jsonStr));
       res.send(JSON.parse(jsonStr));
     });
   });
@@ -74,6 +77,7 @@ router.route('/twitter/reverse')
 
 router.route('/twitter')
   .post((req, res, next) => {
+		console.log("req2:" + req);
     request.post({
       url: `https://api.twitter.com/oauth/access_token?oauth_verifier`,
       oauth: {
@@ -87,7 +91,7 @@ router.route('/twitter')
         return res.send(500, { message: err.message });
       }
 
-      console.log(body);
+			console.log("res2body" + body);
       const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
       const parsedBody = JSON.parse(bodyString);
 
