@@ -15,9 +15,9 @@ class MainPage extends React.Component {
 
   render(){
 
-  	console.log(this.props.state);
     return (
-      <StackGrid columnWidth={150}>
+      <StackGrid columnWidth={150}
+        monitorImagesLoaded={true}>
         {this.props.postsToDisplay.map((post, index) =>
           <Post key={index} post={post}/>
         )}

@@ -1,12 +1,10 @@
 
 
 .postImage {
-  display:block;
   border-radius: 10px;
   width: 100%;
 }
 .postContainer {
-  display:block;
   width: 100%;
   border-radius: 10px;
   background-color: #ccc;
