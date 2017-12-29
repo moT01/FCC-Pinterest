@@ -2,7 +2,8 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  HashRouter
 } from 'react-router-dom';
 
 import App from './components/App';
@@ -14,7 +15,7 @@ import UserPostsPage from './components/userPosts/UserPostsPage';
 import requireAuth from'./utils/requireAuth';
 
 const createRoutes = () => (
-  <Router>
+  <HashRouter>
     <App>
       <Switch>
         <Route exact path="/" component={MainPage}/>
@@ -24,7 +25,7 @@ const createRoutes = () => (
         <Route exact path="/userPage/:userId" component={UserPostsPage}/>
       </Switch>
     </App>
-  </Router>
+  </HashRouter>
 );
 
 export default createRoutes;

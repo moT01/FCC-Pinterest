@@ -17,7 +17,8 @@ class MainPage extends React.Component {
 
     return (
       <StackGrid columnWidth={150}
-        monitorImagesLoaded={true}>
+        monitorImagesLoaded={true}
+        duration={0}>
         {this.props.postsToDisplay.map((post, index) =>
           <Post key={index} post={post}/>
         )}
@@ -25,7 +26,7 @@ class MainPage extends React.Component {
     );
   }
 }
-
+//
 function mapStateToProps(state) {
   return {
     state: state,
