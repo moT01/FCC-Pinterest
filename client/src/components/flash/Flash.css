@@ -1,6 +1,8 @@
 .flash {
-  min-width: 80%;
-  position: fixed;
+  width: 80%;
+  left: 50%;
+  margin-left: -40%;
+  position:fixed;
   top: 100px;
   z-index: 1000;
 }
