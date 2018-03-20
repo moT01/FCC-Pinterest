@@ -11,7 +11,7 @@ let router = express.Router();
 router.get('/allPosts', (req, res) => {
 	console.log('/allPosts');
 
-   postsModel.find().then(allPosts => {
+   postsModel.find().sort({_id:-1}).then(allPosts => {
      res.send(allPosts)
    }).catch(err => {
      res.send([err])
@@ -24,7 +24,7 @@ router.patch('/getUserPosts', (req, res) => {
 
   const { id } = req.body;
 	console.log(id);
-  postsModel.find({ 'postedBy': id }).then(userPosts => {
+  postsModel.find({ 'postedBy': id }).sort({_id:-1}).then(userPosts => {
 		console.log("posts: " + userPosts);
     res.send(userPosts);
   }).catch(err => {
