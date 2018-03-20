@@ -12,7 +12,10 @@ class MyPostsPage extends React.Component {
   }}
   render() {
     return(
-      <StackGrid columnWidth={250}>
+      <StackGrid
+        columnWidth={250}
+        monitorImagesLoaded={true}
+      >
         {this.props.myPosts.map((post, index) =>
           <Post key={index} post={post}/>
         )}

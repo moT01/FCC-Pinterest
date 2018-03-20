@@ -7,21 +7,20 @@
 .postContainer {
   width: 100%;
   border-radius: 10px;
-  background-color: #ccc;
 }
 
 .postInfo {
-visibility: hidden;
-position:absolute;
-top:0;
-background:rgba(0, 0, 0, 0.2);
-border-radius: 10px;
-width:100%;
-height:100%;
+  visibility: hidden;
+  position:absolute;
+  top:0;
+  background:rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width:100%;
+  height:100%;
 }
 
 .postContainer:hover >  .postInfo{
-visibility: visible;
+  visibility: visible;
 }
 
 

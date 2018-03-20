@@ -52,15 +52,15 @@ class Post extends React.Component {
     return (
       <div className="postContainer">
         <img src={this.props.post.imageURL} className="postImage" alt=""/>
-        <div className="postInfo">
-          <PostOverlay
-            post={this.props.post}
-            userID={this.props.id}
-            pinPost={this.pinPost}
-            unpinPost={this.unpinPost}
-            deletePost={this.deletePost}
-          />
-        </div>
+          <div className="postInfo">
+            <PostOverlay
+              post={this.props.post}
+              userID={this.props.id}
+              pinPost={this.pinPost}
+              unpinPost={this.unpinPost}
+              deletePost={this.deletePost}
+            />
+          </div>
       </div>
     );
   }

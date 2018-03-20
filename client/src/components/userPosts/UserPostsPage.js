@@ -11,9 +11,12 @@ class UserPostsPage extends React.Component {
   }
   render() {
     return(
-      <StackGrid columnWidth={150}>
+      <StackGrid
+        columnWidth={150}
+        monitorImagesLoaded={true}
+      >
         {this.props.userPosts.map((post, index) =>
-        <Post key={index} post={post}/>
+          <Post key={index} post={post}/>
         )}
       </StackGrid>
     );

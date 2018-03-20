@@ -18,7 +18,7 @@ class MainPage extends React.Component {
     return (
       <StackGrid columnWidth={150}
         monitorImagesLoaded={true}
-        duration={0}>
+        >
         {this.props.postsToDisplay.map((post, index) =>
           <Post key={index} post={post}/>
         )}
