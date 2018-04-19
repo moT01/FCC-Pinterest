@@ -36,7 +36,7 @@ var router = _express2.default.Router();
 router.get('/allPosts', function (req, res) {
   console.log('/allPosts');
 
-  _postsModel2.default.find().then(function (allPosts) {
+  _postsModel2.default.find().sort({ _id: -1 }).then(function (allPosts) {
     res.send(allPosts);
   }).catch(function (err) {
     res.send([err]);
@@ -49,7 +49,7 @@ router.patch('/getUserPosts', function (req, res) {
   var id = req.body.id;
 
   console.log(id);
-  _postsModel2.default.find({ 'postedBy': id }).then(function (userPosts) {
+  _postsModel2.default.find({ 'postedBy': id }).sort({ _id: -1 }).then(function (userPosts) {
     console.log("posts: " + userPosts);
     res.send(userPosts);
   }).catch(function (err) {
