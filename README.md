@@ -1,18 +1,32 @@
-# Pinter
+## FCC-Pinterest-Clone
+##### Pinterest Clone project for [freeCodeCamp](https://www.freecodecamp.org/)
+##### Check it out [here](https://pinter.herokuapp.com/#/)
 
-## Description
-The website is a Pinterest clone that utilizes react/redux for the front end and
-uses express/node/mongoDB for the API.
-In addition to the general Pinterest features and the twitter OAuth sign in, the
-design gives the pictures more emphasis by displaying the picturesʼ relevant data
-only when users hover on them.
-The popularity of the images are also emphasized where users can see the
-number of pins for each image.
+<br/>
+<br/>
 
 
-## Artitecture
-This project is divided into a front end app and a backend api that need to be run separately.
+##### Objective: Build a Glitch app that is functionally similar to this: https://wild-song.glitch.me.
+##### Fulfill the below user stories. Use whichever libraries or APIs you need. Give it your own personal style.
+- User Story: As an unauthenticated user, I can login with GitHub.
+- User Story: As an authenticated user, I can link to images.
+- User Story: As an authenticated user, I can delete images that I've linked to.
+- User Story: As an authenticated user, I can see a Pinterest-style wall of all the images I've linked to.
+- User Story: As an unauthenticated user, I can browse other users' walls of images.
+- User Story: As an authenticated user, if I upload an image that is broken, it will be replaced by a placeholder image. (can use jQuery broken image detection)
 
-## Instalation
-For installing the backend locally, use npm install and run the app using npm start.
-Since the front end is built using create-react-app, refer to client directory for the instalation instucitons.
+##### Hint: Masonry.js is a library that allows for Pinterest-style image grids.
+
+<br/>
+<br/>
+
+##### Technologies used to complete this project
+- HTML
+- CSS
+- JavaScript
+- React
+- Redux
+- Node
+- Express
+- Passport
+- Mongo/Mongoose
