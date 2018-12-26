@@ -34,6 +34,7 @@ class NavigationBar extends React.Component {
     const requestTokenUrl= process.env.NODE_ENV === "production"?
       "/api/auth/twitter/reverse":"http://localhost:8080/api/auth/twitter/reverse";
 
+    // when authorated show these links
     const userLinks = (
       <ul className="navbarButtonContainer">
         <li className="singleButtonContainer"><Link to="/" className="navbarButton glyphicon glyphicon-eye-open"></Link></li>
@@ -44,13 +45,22 @@ class NavigationBar extends React.Component {
       </ul>
     );
 
+    // when not authorated show this link
     // the twitter component uses the 'react-twitter-auth' to connect to twitter through the backend
     const guestLinks = (
       <ul className="navbarButtonContainer">
         <li className="singleButtonContainer twitterLogin">
-          <TwitterLogin loginUrl={loginUrl}
-                      onFailure={this.onFailed} onSuccess={this.onSuccess}
-                      requestTokenUrl={requestTokenUrl}/>
+          <TwitterLogin
+            loginUrl={loginUrl}
+            onFailure={this.onFailed}
+            onSuccess={this.onSuccess}
+            requestTokenUrl={requestTokenUrl}
+            className="twitter_Auth"
+            >      
+            <b>
+             Login with Twitter
+            </b>
+          </TwitterLogin>
           </li>
       </ul>
     );

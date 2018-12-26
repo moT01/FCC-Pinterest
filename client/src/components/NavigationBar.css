@@ -20,7 +20,23 @@
   margin: 0;
 }
 
+.twitter_Auth{
+  background-color: #1da1f2;
+  min-height: 30px;
+  min-width: 120px;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+  border: 0;
+  outline-style:none;
+}
 
+.twitter_Auth:focus{
+  background-color: #1da1f2;
+
+  color: #1da1f2;
+}
 
 a.navbarBrand{
   padding: 0px;
