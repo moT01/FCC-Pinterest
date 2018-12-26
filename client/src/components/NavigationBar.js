@@ -56,7 +56,7 @@ class NavigationBar extends React.Component {
             onSuccess={this.onSuccess}
             requestTokenUrl={requestTokenUrl}
             className="twitter_Auth"
-            >      
+            >
             <b>
              Login with Twitter
             </b>

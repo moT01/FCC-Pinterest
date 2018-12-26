@@ -133,6 +133,7 @@ router.patch('/pinPost', (req, res) => {
 	   post.save().then(() => {
         res.send({ post });
 	   }).catch(e => {
+			 console.log(e);
         res.send(e);
 	   });
     });

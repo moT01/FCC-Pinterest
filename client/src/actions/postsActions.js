@@ -126,7 +126,7 @@ export function postToPin(updatedPost) {
 
 export function pinPost(postID, userID) {
   console.log('pin post action');
-  console.log(postID, userID);
+  console.log(postID, userID,"sadfa");
   return dispatch => {
     return axios.patch('/api/posts/pinPost', { postID, userID }).then(res => {
       console.log('pinPost action.then');
@@ -147,7 +147,8 @@ export function postToUnpin(post) {
 export function unpinPost(postID, userID) {
   console.log('unpin post action');
   return dispatch => {
-    return axios.patch('/api/posts/unpinPost', { postID, userID }).then(res => {
+    return axios.patch('/api/posts/unpinPost', { postID, userID })
+      .then(res => {
       console.log('unpin action.then');
       const post = res.data[0];
       dispatch(postToUnpin(post));

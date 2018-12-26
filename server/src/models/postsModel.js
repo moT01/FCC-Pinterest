@@ -20,7 +20,7 @@ var postSchema = new Schema({
     type:Array,
     default:[]
   }
-})
+}, { usePushEach: true });
 
 module.exports = mongoose.model('postsModel', postSchema);
 
