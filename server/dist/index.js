@@ -46,7 +46,7 @@ var port = process.env.PORT || 8080;
 
 _mongoose2.default.Promise = global.Promise;
 
-_mongoose2.default.connect(process.env.MONGODB_URI || 'mongodb://localhost/pinterest1', { useMongoClient: true });
+_mongoose2.default.connect(process.env.MONGODB_URI || 'mongodb://localhost/pinter', { useMongoClient: true });
 
 var app = (0, _express2.default)();
 

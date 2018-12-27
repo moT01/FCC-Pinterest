@@ -26,7 +26,7 @@ var postSchema = new Schema({
     type: Array,
     default: []
   }
-});
+}, { usePushEach: true });
 
 module.exports = _mongoose2.default.model('postsModel', postSchema);
 
