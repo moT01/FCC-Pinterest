@@ -6,11 +6,24 @@ import PropTypes from 'prop-types';
 class FlashMessage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      messageID: this.props.message.id
+    };
     this.onClick = this.onClick.bind(this);
   }
 
   onClick(){
     this.props.deleteFlashMessage(this.props.message.id);
+  }
+
+  componentDidMount() {
+    setTimeout(
+        function() {
+            this.props.deleteFlashMessage(this.props.message.id);
+        }
+        .bind(this),
+        3000
+    );
   }
 
   render(){

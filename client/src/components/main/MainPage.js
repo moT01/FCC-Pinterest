@@ -26,6 +26,7 @@ class MainPage extends React.Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     state: state,

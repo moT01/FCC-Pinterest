@@ -1,9 +1,8 @@
-
-
 .postImage {
   border-radius: 10px;
   width: 100%;
 }
+
 .postContainer {
   width: 100%;
   border-radius: 10px;
@@ -11,105 +10,107 @@
 
 .postInfo {
   visibility: hidden;
-  position:absolute;
-  top:0;
-  background:rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
 }
 
-.postContainer:hover >  .postInfo{
+.postContainer:hover>.postInfo {
   visibility: visible;
 }
 
-
-
 /* pin button in post*/
-.pinButton{
+.pinButton {
   z-index: 1;
-  position:absolute;
-  left:1em;
-  top:1em;
+  position: absolute;
+  left: 1em;
+  top: 1em;
   text-align: center;
-  width:auto;
+  width: auto;
   background-color: white;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   border-radius: 20px;
   height: 2em;
-  vertical-align:middle;
+  vertical-align: middle;
   padding-top: .25em;
   min-width: 2em;
-  color:#b5b5b5;
+  color: #b5b5b5;
 }
-.pinButton:hover{
-  color: #717171;;
+
+.pinButton:hover {
+  color: #717171;
+  ;
   cursor: pointer;
 }
-.pinButton > span{
+
+.pinButton>span {
   margin-left: .5em;
 }
-.pinButton > text{
-  size:.25em;
+
+.pinButton>text {
+  size: .25em;
   margin-right: .5em;
 }
 
-
 /* pin button in post*/
-
 /* unpin button in post*/
-.unpinButton{
+.unpinButton {
   z-index: 1;
-  position:absolute;
-  left:1em;
-  top:1em;
+  position: absolute;
+  left: 1em;
+  top: 1em;
   text-align: center;
-  width:auto;
+  width: auto;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   border-radius: 20px;
   height: 2em;
-  vertical-align:middle;
+  vertical-align: middle;
   padding-top: .25em;
   min-width: 2em;
   background-color: #bc081c;
   color: white;
 }
-.unpinButton:hover{
+
+.unpinButton:hover {
   background-color: #a30618;
   cursor: pointer;
 }
-.unpinButton > span{
+
+.unpinButton>span {
   margin-left: .5em;
 }
-.unpinButton > text{
-  size:.25em;
+
+.unpinButton>text {
+  size: .25em;
   margin-right: .5em;
 }
 
 /* unpin button in post*/
-
 /* delete button in post*/
-.deleteButton{
+.deleteButton {
   z-index: 1;
-  position:absolute;
-  right:1.5em;
-  top:1.5em;
+  position: absolute;
+  right: 1.5em;
+  top: 1.5em;
 }
 
-.deleteButton::after{
-   z-index: -1;
-   content: '';
-   position: absolute;
-   left: -.5em;
-   top: -.5em;
-   width: 2em;
-   height: 2em;
-   -moz-border-radius: 20px;
-   -webkit-border-radius: 20px;
-   border-radius: 20px;
-   background-color: white;
+.deleteButton::after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  left: -.5em;
+  top: -.5em;
+  width: 2em;
+  height: 2em;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background-color: white;
 }
 
 .glyphicon.deleteButton:hover {
@@ -122,9 +123,8 @@
 }
 
 /* delete button in post*/
-
 /* user Picture in post */
-.userPicture{
+.userPicture {
   position: absolute;
   left: 1em;
   bottom: 1em;
@@ -136,9 +136,7 @@
 }
 
 /* user Picture in post */
-
-
-.userName{
+.userName {
   position: absolute;
   left: 4.5em;
   bottom: 1em;
@@ -146,10 +144,9 @@
   text-decoration: none;
 }
 
-.userName:hover{
+.userName:hover {
   color: white;
   text-decoration: none;
 }
-
 
 /* media queries mobile first */

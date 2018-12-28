@@ -201,7 +201,6 @@ router.patch('/pinPost', function (req, res) {
                 post.save().then(function () {
                   res.send({ post: post });
                 }).catch(function (e) {
-                  console.log(e);
                   res.send(e);
                 });
               });

@@ -22,6 +22,8 @@ var postSchema = new Schema({
   }
 }, { usePushEach: true });
 
+
+
 module.exports = mongoose.model('postsModel', postSchema);
 
 // db.postsmodels.insert({postedBy: "me",

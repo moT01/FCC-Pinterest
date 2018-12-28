@@ -1,5 +1,14 @@
 import axios from 'axios';
-import { GET_USER_POSTS, GET_MY_POSTS, LOAD_POSTS, CREATE_POST, DELETE_POST, PIN_POST, UNPIN_POST, MY_PINS } from './types';
+import {
+  GET_USER_POSTS,
+  GET_MY_POSTS,
+  LOAD_POSTS,
+  CREATE_POST,
+  DELETE_POST,
+  PIN_POST,
+  UNPIN_POST,
+  MY_PINS
+} from './types';
 
 
 // getting other user's posts and dispatching to store
@@ -13,7 +22,9 @@ export function loadUserPosts(posts) {
 export function getUserPosts(id) {
   console.log('getUserPosts action');
   return dispatch => {
-    return axios.patch('/api/posts/getUserPosts', {id}).then(res => {
+    return axios.patch('/api/posts/getUserPosts', {
+      id
+    }).then(res => {
       const myPosts = res.data;
       console.log("myPosts" + myPosts);
       dispatch(loadUserPosts(myPosts));
@@ -51,7 +62,9 @@ export function loadMyPosts(posts) {
 export function getMyPosts(id) {
   console.log('getUserPosts action');
   return dispatch => {
-    return axios.patch('/api/posts/getUserPosts', {id}).then(res => {
+    return axios.patch('/api/posts/getUserPosts', {
+      id
+    }).then(res => {
       const myPosts = res.data;
       console.log("myPosts" + myPosts);
       dispatch(loadMyPosts(myPosts));
@@ -91,7 +104,11 @@ export function postToDelete(post) {
 export function deletePost(postID, postOwnerID, authenticatedUserID) {
   console.log('deletePost action');
   return dispatch => {
-    return axios.patch('/api/posts/deletePost', { postID, postOwnerID, authenticatedUserID }).then(res => {
+    return axios.patch('/api/posts/deletePost', {
+      postID,
+      postOwnerID,
+      authenticatedUserID
+    }).then(res => {
       const post = res.data[0];
       dispatch(postToDelete(post));
     });
@@ -109,7 +126,9 @@ export function loadMyPins(myPins) {
 export function getMyPins(userID) {
   console.log('getMyPins action');
   return dispatch => {
-    return axios.patch('/api/posts/getPins', { userID }).then(res => {
+    return axios.patch('/api/posts/getPins', {
+      userID
+    }).then(res => {
       console.log('getMyPins action.then');
       const myPins = res.data.myPins;
       dispatch(loadMyPins(myPins));
@@ -126,9 +145,12 @@ export function postToPin(updatedPost) {
 
 export function pinPost(postID, userID) {
   console.log('pin post action');
-  console.log(postID, userID,"sadfa");
+  console.log(postID, userID, "sadfa");
   return dispatch => {
-    return axios.patch('/api/posts/pinPost', { postID, userID }).then(res => {
+    return axios.patch('/api/posts/pinPost', {
+      postID,
+      userID
+    }).then(res => {
       console.log('pinPost action.then');
       const updatedPost = res.data.post;
       console.log(updatedPost);
@@ -147,11 +169,14 @@ export function postToUnpin(post) {
 export function unpinPost(postID, userID) {
   console.log('unpin post action');
   return dispatch => {
-    return axios.patch('/api/posts/unpinPost', { postID, userID })
+    return axios.patch('/api/posts/unpinPost', {
+        postID,
+        userID
+      })
       .then(res => {
-      console.log('unpin action.then');
-      const post = res.data[0];
-      dispatch(postToUnpin(post));
-    });
+        console.log('unpin action.then');
+        const post = res.data[0];
+        dispatch(postToUnpin(post));
+      });
   }
 }

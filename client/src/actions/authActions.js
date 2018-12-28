@@ -22,10 +22,10 @@ export function login(res) {
   console.log(res.headers.get('x-auth-token'));
   const token = res.headers.get('x-auth-token');
   return dispatch => {
-    if(token) {
+    if (token) {
       localStorage.setItem('jwtToken', token);
       setAuthorizationToken(token);
       dispatch(setCurrentUser(jwtDecode(token)));
-     }
+    }
   }
 }
