@@ -27,7 +27,7 @@ class CreatePostForm extends React.Component {
     if(this.checkForImage(e.target.value) && this.isURL(e.target.value)){
       this.validate(e.target.value);
     }else{
-      this.setState({defaultImage: "https://goo.gl/yNUY3G", sendable: false});
+      this.setState({defaultImage: "../../assets/photo_placeholder.png", sendable: false});
     }
   }
 
