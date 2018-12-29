@@ -11,3 +11,29 @@
   box-shadow: 0 0 16px 16px #fff;
   margin-bottom: 20px;
 }
+
+.fade-out {
+	opacity: 0;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+	animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+  1% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+	100% {
+		opacity: 0;
+	}
+}
