@@ -33,9 +33,11 @@
 }
 
 .twitter_Auth:focus{
-  background-color: #1da1f2;
+  background-color: #188ad0;
+}
 
-  color: #1da1f2;
+.twitter_Auth:hover {
+  background-color: #188ad0;
 }
 
 a.navbarBrand{
