@@ -13,7 +13,7 @@
 }
 
 .fade-out {
-	opacity: 0;
+	opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-out;
