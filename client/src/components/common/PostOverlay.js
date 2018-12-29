@@ -10,7 +10,7 @@ export function PostOverlay(props) {
           <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
         </Link>
         <Link to={'/userPage/' + props.post.postedBy} className="userName">
-          {props.post.ownerUsername}
+          {(props.post.ownerUsername).slice(0, 10)}
         </Link>
       </div>
     );
@@ -22,7 +22,7 @@ export function PostOverlay(props) {
           <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
         </Link>
         <Link to={'/myPosts'} className="userName">
-          {props.post.ownerUsername}
+          {(props.post.ownerUsername).slice(0, 10)}
         </Link>
       </div>
     );
@@ -41,7 +41,7 @@ export function PostOverlay(props) {
           <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
         </Link>
         <Link to={'/userPage/' + props.post.postedBy} className="userName">
-          {props.post.ownerUsername}
+          {(props.post.ownerUsername).slice(0, 10)}
         </Link>
       </div>
     );
@@ -59,7 +59,7 @@ export function PostOverlay(props) {
           <img src={props.post.profileImageUrl} className="userPicture" alt=""/>
         </Link>
         <Link to={'/userPage/' + props.post.postedBy} className="userName">
-          {props.post.ownerUsername}
+          {(props.post.ownerUsername).slice(0, 10)}
         </Link>
       </div>
     );
