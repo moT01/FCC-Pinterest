@@ -75,7 +75,7 @@ class CreatePostForm extends React.Component {
     const { imageURL, isLoading, sendable } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <h1> Create a Post... </h1>
+        <h1> Add an Image </h1>
         <img src={this.state.defaultImage} className="img-thumbnail" alt="place_holder" width="304" height="236"/>
 
         <TextFieldGroup
