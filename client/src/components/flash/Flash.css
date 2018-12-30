@@ -17,21 +17,13 @@
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-out;
-	animation-duration: 2s;
+	animation-duration: 1.2s;
+  animation-fill-mode: forwards;
 }
 
 @keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-  1% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 1;
-  }
   75% {
-    opacity: 0;
+    opacity: 1;
   }
 	100% {
 		opacity: 0;

@@ -22,7 +22,7 @@ class FlashMessage extends React.Component {
             this.props.deleteFlashMessage(this.props.message.id);
         }
         .bind(this),
-        2000
+        1200
     );
   }
 
