@@ -4,13 +4,14 @@ import { createPost } from '../../actions/postsActions';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../../actions/flashMessages.js';
 import checkImage from 'image-check';
+import place_holder from '../../assets/photo_placeholder.png';
 
 class CreatePostForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       imageURL: '',
-      defaultImage: 'https://goo.gl/yNUY3G',
+      defaultImage: place_holder,
       userID: this.props.id,
       username: this.props.username,
       profileImageUrl: this.props.profileImageUrl,
@@ -27,7 +28,7 @@ class CreatePostForm extends React.Component {
     if(this.checkForImage(e.target.value) && this.isURL(e.target.value)){
       this.validate(e.target.value);
     }else{
-      this.setState({defaultImage: "../../assets/photo_placeholder.png", sendable: false});
+      this.setState({defaultImage: place_holder, sendable: false});
     }
   }
 
@@ -37,7 +38,7 @@ class CreatePostForm extends React.Component {
         this.setState({defaultImage: URL, sendable: true});
     }).catch((err) => {
       //error handeling
-        this.setState({defaultImage: "https://goo.gl/yNUY3G", sendable: false});
+        this.setState({defaultImage: place_holder, sendable: false});
     });
   }
 
@@ -65,7 +66,7 @@ class CreatePostForm extends React.Component {
         type: "success",
         text: "picture added successfully"
       });
-      this.setState({defaultImage: "https://goo.gl/yNUY3G", sendable: false, imageURL: '' });
+      this.setState({defaultImage: place_holder, sendable: false, imageURL: '' });
 
     });
     console.log('end of submit create post form');
@@ -75,7 +76,8 @@ class CreatePostForm extends React.Component {
     return (
       <form onSubmit={this.onSubmit}>
         <h1> Create a Post... </h1>
-        <img src={this.state.defaultImage} className="img-thumbnail" alt="Cinque Terre" width="304" height="236"/>
+        <img src={this.state.defaultImage} className="img-thumbnail" alt="place_holder" width="304" height="236"/>
+
         <TextFieldGroup
           field="imageURL"
           label="Image URL:"
