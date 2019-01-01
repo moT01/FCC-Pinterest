@@ -95,6 +95,7 @@ router.patch('/deletePost', (req, res) => {
         //if someone pinned it - remove the owner from the post
         if(post.pinnedBy.length > 0) {
           post.postedBy = null;
+          post.ownerUsername = "[deleted]";
           post.save().then(() => {
             res.send([ post ]);
 	       }).catch(e => {
