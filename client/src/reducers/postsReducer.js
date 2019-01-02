@@ -56,6 +56,7 @@ export default (state = initialState, action = {}) => {
       if (action.post._id) {
         let index = state.postsToDisplay.findIndex(i => i._id === action.post._id);
         state.postsToDisplay[index] = action.post;
+        state.myPosts = state.myPosts.filter(post => post._id !== action.post._id);
 
         //else if remove whole post
       } else {
