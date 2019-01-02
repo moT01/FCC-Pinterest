@@ -57,7 +57,9 @@ router.post('/createPost', (req, res) => {
       postedBy: userID,
       ownerUsername: username,
       profileImageUrl: profileImageUrl,
-      imageURL: imageURL
+      imageURL: imageURL,
+      createdOn: new Date(),
+      bumpedOn: new Date()
     });
 
     newPost.save().then( post => {
@@ -130,7 +132,8 @@ router.patch('/pinPost', (req, res) => {
 	     res.send(err);
 	   }
 
-	   post.pinnedBy.push(userID);
+     post.pinnedBy.push(userID);
+     post.bumpedOn = new Date();
 	   post.save().then(() => {
         res.send({ post });
 	   }).catch(e => {

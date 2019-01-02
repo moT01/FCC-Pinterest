@@ -19,6 +19,14 @@ var postSchema = new Schema({
   pinnedBy:{
     type:Array,
     default:[]
+  },
+  createdOn: {
+    type: Date,
+    required: true
+  },
+  bumpedOn: {
+    type: Date,
+    required: true
   }
 }, { usePushEach: true });
 
